@@ -23,4 +23,6 @@ public class ModerationAPIRequest {
      */
     public String model;
 
+    public ModerationAPIRequest() {
+    }
 }

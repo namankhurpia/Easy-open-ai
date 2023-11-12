@@ -5,10 +5,13 @@ import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-public interface ModerationAPI {
+import java.io.IOException;
+
+
+public interface apiInterface {
 
     @POST("/v1/moderations")
-    ModerationAPIResponse getmoderation(@Header("Authorization")String accessToken, @Body ModerationAPIRequest request);
+    ModerationAPIResponse getmoderation(@Header("Authorization")String accessToken, @Body ModerationAPIRequest request) throws IOException;
 
 
 }
