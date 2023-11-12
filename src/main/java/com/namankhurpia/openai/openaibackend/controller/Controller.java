@@ -18,16 +18,9 @@ public class Controller {
     ModerationAPIServiceImpl moderationService;
 
     @PostMapping("/mod")
-    public ModerationAPIResponse getModeration(@RequestParam String accessToken, @RequestBody ModerationAPIRequest request) throws IOException {
-        return moderationService.getmoderation(openai_key, request);
+    public void getModeration(@RequestHeader("Authorization") String accessToken, @RequestBody ModerationAPIRequest request) throws IOException {
+        moderationService.getmoderation(accessToken, request);
     }
-
-    @GetMapping("/hello")
-    public String getHello()
-    {
-        return "hey";
-    }
-
 
 
 }

@@ -20,27 +20,23 @@ public class ModerationDAO implements EndPoints {
     apiInterface apiInterface;
     private static Logger LOGGER = LoggerFactory.getLogger(ModerationDAO.class);
 
-    public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 
+    public void getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 
+        //Retrofit retrofit = APIClient.getClient();
+        //apiInterface = retrofit.create(apiInterface.class);
         apiInterface = APIClient.getClient().create(com.namankhurpia.openai.openaibackend.Interfaces.apiInterface.class);
         LOGGER.debug("making req" + accessToken + " with request "+ request.toString());
         Call<ModerationAPIResponse> call = (Call<ModerationAPIResponse>) apiInterface.getmoderation(accessToken, request);
-        call.enqueue(new Callback<ModerationAPIResponse>() {
-            @Override
-            public void onResponse(Call<ModerationAPIResponse> call, Response<ModerationAPIResponse> response) {
+        Response<ModerationAPIResponse> response = call.execute();
 
-                System.out.println(response.body());
+        if (response.isSuccessful()) {
+            LOGGER.debug(response.body().toString());
+        } else {
+            // Handle unsuccessful response (e.g., log, throw exception, etc.)
+            LOGGER.error("Moderation API request failed with code: {}", response.code());
 
-            }
-
-            @Override
-            public void onFailure(Call<ModerationAPIResponse> call, Throwable throwable) {
-
-            }
-        });
-
-        return null;
+        }
 
 
     }

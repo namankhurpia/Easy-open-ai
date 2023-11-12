@@ -1,5 +1,6 @@
 package com.namankhurpia.openai.openaibackend.Pojo.Moderations;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -13,6 +14,7 @@ public class ModerationAPIRequest {
      * This input is your prompt which needs to be tested against moderations API
      */
     @NonNull
+    @SerializedName("input")
     public String input;
 
     /**
@@ -21,6 +23,7 @@ public class ModerationAPIRequest {
      * 2. <text-moderation-stable>
      *
      */
+    @SerializedName("model")
     public String model;
 
     public ModerationAPIRequest() {

@@ -6,6 +6,7 @@ import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIReque
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import retrofit2.Call;
 
 import java.io.IOException;
 
@@ -13,11 +14,17 @@ import java.io.IOException;
 public class ModerationAPIServiceImpl implements apiInterface {
 
 
+    private final ModerationDAO dao;
+
     @Autowired
-    ModerationDAO dao;
+    public ModerationAPIServiceImpl(ModerationDAO dao) {
+        this.dao = dao;
+    }
 
     @Override
-    public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
-        return dao.getmoderation(accessToken,request);
+    public Call<ModerationAPIResponse> getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
+        dao.getmoderation(accessToken, request);
+        return null;
     }
+
 }
