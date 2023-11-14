@@ -36,7 +36,7 @@ public class CompletionRequest {
      * When used with n, best_of controls the number of candidate completions and n specifies how many to return – best_of must be greater than n
      */
     @JsonProperty("best_of")
-    int bestOf;
+    Integer best_of;
 
     /**
      * echo
@@ -55,7 +55,7 @@ public class CompletionRequest {
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
      */
     @JsonProperty("frequency_penalty")
-    int frequencyPenalty;
+    Double frequency_penalty;
 
 
     /**
@@ -69,7 +69,7 @@ public class CompletionRequest {
      * As an example, you can pass {"50256": -100} to prevent the <|endoftext|> token from being generated.
      */
     @JsonProperty("logit_bias")
-    Map<String, Integer> logitBias;
+    Map<String, Integer> logit_bias;
 
 
     /**
@@ -81,7 +81,7 @@ public class CompletionRequest {
      The maximum value for logprobs is 5.
      */
     @JsonProperty("logsprobs")
-    int logsProbs;
+    Integer logsprobs;
 
     /**
      * integer or null
@@ -91,8 +91,9 @@ public class CompletionRequest {
      *
      * The token count of your prompt plus max_tokens cannot exceed the model's context length. Example Python code for counting tokens.
      */
+
     @JsonProperty("max_tokens")
-    int maxTokens;
+    Integer max_tokens;
 
     /**
      * integer or null
@@ -103,7 +104,7 @@ public class CompletionRequest {
      * Note: Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for max_tokens and stop
      */
     @JsonProperty("n")
-    int n;
+    Integer n;
 
     /**
      * number or null
@@ -112,7 +113,7 @@ public class CompletionRequest {
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
      */
     @JsonProperty("presence_penalty")
-    int presencePenalty;
+    Double presence_penalty;
 
     /**
      * integer or null
@@ -122,7 +123,7 @@ public class CompletionRequest {
      * Determinism is not guaranteed, and you should refer to the system_fingerprint response parameter to monitor changes in the backend.
      */
     @JsonProperty("seed")
-    int seed;
+    Integer seed;
 
     /**
      * string / array / null
@@ -160,7 +161,7 @@ public class CompletionRequest {
      * We generally recommend altering this or top_p but not both.
      */
     @JsonProperty("temperature")
-    String temperature;
+    Double temperature;
 
     /**
      * number or null
@@ -171,7 +172,7 @@ public class CompletionRequest {
      * We generally recommend altering this or temperature but not both
      */
     @JsonProperty("top_p")
-    String topP;
+    Double top_p;
 
     /**
      * user

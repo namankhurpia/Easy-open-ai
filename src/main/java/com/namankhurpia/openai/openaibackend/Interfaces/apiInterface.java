@@ -19,7 +19,7 @@ public interface apiInterface {
 
 
     //Newer models (2023–) gpt-4 (and gpt-4 turbo), gpt-3.5-turbo
-    @POST("/v1/chat/completions")
+    @POST("/v1/completions")
     Call<CompletionResponse> getCompletion(@Header("Authorization")String accessToken, @Body CompletionRequest request)throws IOException;
 
     //Updated base models (2023) babbage-002, davinci-002 and Legacy models (2020–2022) text-davinci-003, text-davinci-002, davinci, curie, babbage, ada

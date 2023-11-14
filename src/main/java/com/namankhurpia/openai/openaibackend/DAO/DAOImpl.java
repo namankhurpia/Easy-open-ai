@@ -2,6 +2,7 @@ package com.namankhurpia.openai.openaibackend.DAO;
 
 import com.namankhurpia.openai.openaibackend.Interfaces.DaoInterface;
 import com.namankhurpia.openai.openaibackend.Interfaces.apiInterface;
+import com.namankhurpia.openai.openaibackend.Pojo.APIError;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionRequest;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIRequest;
@@ -22,6 +23,7 @@ public class DAOImpl implements DaoInterface {
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
     ModerationAPIResponse moderationAPIResponseObj;
     CompletionResponse completionResponseObj;
+    APIError error;
 
     public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 
@@ -59,8 +61,12 @@ public class DAOImpl implements DaoInterface {
         }
         else
         {
+            int httpStatusCode = response.code();
+            String errorBody = response.errorBody() != null ? response.errorBody().string() : "Empty error body";
+            LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
 
-            LOGGER.error("Unsuccessful response"+response.getErrorDescription());
+            // You may want to throw a custom exception or log the error based on your needs
+            //throw new YourCustomException("API call was not successful");
         }
 
         return  completionResponseObj;
