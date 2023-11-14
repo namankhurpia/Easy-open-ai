@@ -2,7 +2,6 @@ package com.namankhurpia.openai.openaibackend.DAO;
 
 import com.namankhurpia.openai.openaibackend.Interfaces.DaoInterface;
 import com.namankhurpia.openai.openaibackend.Interfaces.apiInterface;
-import com.namankhurpia.openai.openaibackend.Pojo.APIError;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionRequest;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIRequest;
@@ -23,7 +22,6 @@ public class DAOImpl implements DaoInterface {
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
     ModerationAPIResponse moderationAPIResponseObj;
     CompletionResponse completionResponseObj;
-    APIError error;
 
     public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 

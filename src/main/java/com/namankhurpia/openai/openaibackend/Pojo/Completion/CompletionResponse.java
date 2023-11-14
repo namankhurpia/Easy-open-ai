@@ -1,6 +1,8 @@
 package com.namankhurpia.openai.openaibackend.Pojo.Completion;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.namankhurpia.openai.openaibackend.Pojo.Commons.Choice;
+import com.namankhurpia.openai.openaibackend.Pojo.Commons.Usage;
 import lombok.Data;
 
 import java.util.List;

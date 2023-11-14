@@ -1,6 +1,8 @@
-package com.namankhurpia.openai.openaibackend.Pojo.Completion;
+package com.namankhurpia.openai.openaibackend.Pojo.Commons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.Message;
+import lombok.Data;
 
 
 /**
@@ -9,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * maximum number of tokens specified in the request was reached, or content_filter if
  * content was omitted due to a flag from our content filters.
  */
+@Data
 public class Choice {
 
 
@@ -21,8 +24,11 @@ public class Choice {
     @JsonProperty("logprobs")
     public Object logprobs;
 
+    @JsonProperty("message")
+    public Message message;
+
     @JsonProperty("finish_reason")
-    public String finishReason;
+    public String finish_reason;
 
 
 }

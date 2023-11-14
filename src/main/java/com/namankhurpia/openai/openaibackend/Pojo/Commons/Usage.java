@@ -1,4 +1,4 @@
-package com.namankhurpia.openai.openaibackend.Pojo.Completion;
+package com.namankhurpia.openai.openaibackend.Pojo.Commons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
@@ -12,11 +12,11 @@ import com.google.gson.annotations.SerializedName;
 public class Usage {
 
     @JsonProperty("prompt_tokens")
-    public Integer promptTokens;
+    public Integer prompt_tokens;
 
     @JsonProperty("completion_tokens")
-    public Integer completionTokens;
+    public Integer completion_tokens;
 
     @JsonProperty("total_tokens")
-    public Integer totalTokens;
+    public Integer total_tokens;
 }
