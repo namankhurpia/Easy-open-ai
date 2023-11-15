@@ -2,6 +2,8 @@ package com.namankhurpia.openai.openaibackend.Service;
 
 import com.namankhurpia.openai.openaibackend.DAO.DAOImpl;
 import com.namankhurpia.openai.openaibackend.Interfaces.DaoInterface;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionRequest;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionRequest;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIRequest;
@@ -30,6 +32,11 @@ public class ModerationAPIServiceImpl implements DaoInterface {
     @Override
     public CompletionResponse getCompletion(String accessToken, CompletionRequest request) throws IOException {
         return dao.getCompletion(accessToken,request);
+    }
+
+    @Override
+    public ChatCompletionResponse chatCompletion(String accessToken, ChatCompletionRequest request) throws IOException {
+        return dao.chatCompletion(accessToken,request);
     }
 
 }

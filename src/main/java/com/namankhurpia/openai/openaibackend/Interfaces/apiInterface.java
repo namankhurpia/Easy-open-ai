@@ -1,4 +1,6 @@
 package com.namankhurpia.openai.openaibackend.Interfaces;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionRequest;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionRequest;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIRequest;
@@ -25,5 +27,10 @@ public interface apiInterface {
     //Updated base models (2023) babbage-002, davinci-002 and Legacy models (2020–2022) text-davinci-003, text-davinci-002, davinci, curie, babbage, ada
     @POST("/v1/completions")
     Call<CompletionResponse> completion_old(@Header("Authorization")String accessToken, @Body CompletionRequest request)throws IOException;
+
+
+    @POST("/v1/chat/completions")
+    Call<ChatCompletionResponse> chatCompletion(@Header("Authorization") String accessToken, @Body ChatCompletionRequest request) throws  IOException;
+
 
 }

@@ -1,5 +1,7 @@
 package com.namankhurpia.openai.openaibackend.controller;
 
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionRequest;
+import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionRequest;
 import com.namankhurpia.openai.openaibackend.Pojo.Completion.CompletionResponse;
 import com.namankhurpia.openai.openaibackend.Pojo.Moderations.ModerationAPIRequest;
@@ -21,9 +23,16 @@ public class Controller {
         return moderationService.getmoderation(accessToken, request);
     }
 
-    @PostMapping("/chat")
+    @PostMapping("/completion")
     public CompletionResponse getCompletion(@RequestHeader("Authorization") String accessToken, @RequestBody CompletionRequest request) throws IOException {
         return moderationService.getCompletion(accessToken, request);
     }
+
+    @PostMapping("/chat")
+    public ChatCompletionResponse chatCompletion(@RequestHeader("Authorization") String accessToken, @RequestBody ChatCompletionRequest request) throws IOException {
+        return moderationService.chatCompletion(accessToken, request);
+    }
+
+
 
 }
