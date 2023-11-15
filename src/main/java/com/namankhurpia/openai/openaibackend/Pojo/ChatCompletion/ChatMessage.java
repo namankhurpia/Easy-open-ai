@@ -34,4 +34,7 @@ public class ChatMessage {
         this.name = name;
     }
 
+    public ChatMessage() {
+
+    }
 }

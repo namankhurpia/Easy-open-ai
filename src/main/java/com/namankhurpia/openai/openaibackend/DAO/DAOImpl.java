@@ -81,7 +81,7 @@ public class DAOImpl implements DaoInterface {
         Call<ChatCompletionResponse> call = apiInterfaceObj.chatCompletion(accessToken,request);
         Response<ChatCompletionResponse> response = call.execute();
 
-        if(response.isSuccessful())
+         if(response.isSuccessful())
         {
             chatCompletionResponseObj = response.body();
             LOGGER.info("Correct response" + chatCompletionResponseObj.toString());
@@ -89,12 +89,15 @@ public class DAOImpl implements DaoInterface {
         else
         {
             int httpStatusCode = response.code();
-            String errorBody = response.errorBody() != null ? response.errorBody().string() : "Empty error body";
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
             LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
 
             // You may want to throw a custom exception or log the error based on your needs
             //throw new YourCustomException("API call was not successful");
         }
+
+
+
 
         return  chatCompletionResponseObj;
     }

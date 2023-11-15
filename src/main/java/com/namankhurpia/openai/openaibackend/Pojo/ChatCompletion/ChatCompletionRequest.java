@@ -114,4 +114,7 @@ public class ChatCompletionRequest {
         }
 
     }
+
+    public ChatCompletionRequest() {
+    }
 }

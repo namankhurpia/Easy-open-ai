@@ -6,6 +6,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.namankhurpia.openai.openaibackend.Interfaces.EndPoints.BASE_URL;
 
 public class APIClient {
@@ -17,7 +19,13 @@ public class APIClient {
         //for adding Http logging
         //HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().build();
+        //OkHttpClient client = new OkHttpClient.Builder().setReadTimeout$okhttp(600).build();
+
+        final OkHttpClient client= new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
 
         retrofit =new Retrofit.Builder()
                 .baseUrl(BASE_URL)

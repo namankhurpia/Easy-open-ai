@@ -1,7 +1,9 @@
 package com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
+@Data
 public class ToolCalls {
 
     /**
@@ -23,5 +25,6 @@ public class ToolCalls {
     @JsonProperty("function")
     Function function;
 
-
+    public ToolCalls() {
+    }
 }

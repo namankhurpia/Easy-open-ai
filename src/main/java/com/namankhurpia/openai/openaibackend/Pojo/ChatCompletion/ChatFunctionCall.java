@@ -2,7 +2,9 @@ package com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.Data;
 
+@Data
 public class ChatFunctionCall {
 
     /**
@@ -17,4 +19,7 @@ public class ChatFunctionCall {
 
     @JsonProperty("arguments")
     JsonNode arguments;
+
+    public ChatFunctionCall() {
+    }
 }

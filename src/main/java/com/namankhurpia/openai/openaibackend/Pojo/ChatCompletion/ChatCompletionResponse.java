@@ -3,9 +3,11 @@ package com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.namankhurpia.openai.openaibackend.Pojo.Commons.Choice;
 import com.namankhurpia.openai.openaibackend.Pojo.Commons.Usage;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class ChatCompletionResponse {
 
     @JsonProperty("id")
@@ -29,5 +31,6 @@ public class ChatCompletionResponse {
     @JsonProperty("usage")
     public Usage usage;
 
-
+    public ChatCompletionResponse() {
+    }
 }

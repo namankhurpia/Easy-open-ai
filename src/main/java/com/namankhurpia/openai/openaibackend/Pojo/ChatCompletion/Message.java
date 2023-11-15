@@ -12,4 +12,7 @@ public class Message {
 
     @JsonProperty("content")
     public String content;
+
+    public Message() {
+    }
 }
