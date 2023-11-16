@@ -1,5 +1,6 @@
 package com.namankhurpia.openai.openaibackend.DAO;
 
+import com.namankhurpia.openai.openaibackend.Exception.MalformedRequestException;
 import com.namankhurpia.openai.openaibackend.Interfaces.DaoInterface;
 import com.namankhurpia.openai.openaibackend.Interfaces.apiInterface;
 import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionRequest;
@@ -65,10 +66,10 @@ public class DAOImpl implements DaoInterface {
         {
             int httpStatusCode = response.code();
             String errorBody = response.errorBody() != null ? response.errorBody().string() : "Empty error body";
-            LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
+            //LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
 
             // You may want to throw a custom exception or log the error based on your needs
-            //throw new YourCustomException("API call was not successful");
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
         }
 
         return  completionResponseObj;

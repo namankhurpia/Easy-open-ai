@@ -12,6 +12,8 @@ public class ChatMessage {
 
     @NonNull
     String role;
+
+    @NonNull
     @JsonInclude() // content should always exist in the call, even if it is null
     String content;
     //name is optional, The name of the author of this message. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
