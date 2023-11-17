@@ -1,6 +1,7 @@
 package com.namankhurpia.openai.openaibackend.DAO;
 
 import com.namankhurpia.openai.openaibackend.Exception.MalformedRequestException;
+import com.namankhurpia.openai.openaibackend.Exception.ParameterCheckers;
 import com.namankhurpia.openai.openaibackend.Interfaces.DaoInterface;
 import com.namankhurpia.openai.openaibackend.Interfaces.apiInterface;
 import com.namankhurpia.openai.openaibackend.Pojo.ChatCompletion.ChatCompletionRequest;
@@ -17,6 +18,8 @@ import retrofit2.*;
 
 import java.io.IOException;
 
+import static com.namankhurpia.openai.openaibackend.Exception.ParameterCheckers.*;
+
 @Service
 public class DAOImpl implements DaoInterface {
 
@@ -30,6 +33,11 @@ public class DAOImpl implements DaoInterface {
 
     public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 
+        //param checking
+        if(checkParamForModeration(request))
+        {
+            throw new MalformedRequestException("Request object has Model name empty or Input empty ", new Throwable());
+        }
 
         apiInterfaceObj = APIClient.getClient().create(com.namankhurpia.openai.openaibackend.Interfaces.apiInterface.class);
         //LOGGER.info("making req" + accessToken + " with request "+ request.toString());
@@ -42,7 +50,10 @@ public class DAOImpl implements DaoInterface {
         }
         else
         {
+            int httpStatusCode = response.code();
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
             LOGGER.error(response.errorBody().toString());
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
         }
 
         return moderationAPIResponseObj;
@@ -52,7 +63,15 @@ public class DAOImpl implements DaoInterface {
 
     @Override
     public CompletionResponse getCompletion(String accessToken, CompletionRequest request) throws IOException {
+
+        //param checking
+        if(checkParamForCompletion(request))
+        {
+            throw new MalformedRequestException("Request object has Model name empty or promp empty ", new Throwable());
+        }
+
         apiInterfaceObj = APIClient.getClient().create(apiInterface.class);
+
         LOGGER.info("making req" + accessToken + " with request "+ request.toString());
         Call<CompletionResponse> call = apiInterfaceObj.getCompletion(accessToken,request);
         Response<CompletionResponse> response = call.execute();
@@ -66,9 +85,7 @@ public class DAOImpl implements DaoInterface {
         {
             int httpStatusCode = response.code();
             String errorBody = response.errorBody() != null ? response.errorBody().string() : "Empty error body";
-            //LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
-
-            // You may want to throw a custom exception or log the error based on your needs
+            LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
             throw new MalformedRequestException(errorBody, new Throwable(errorBody));
         }
 
@@ -77,12 +94,25 @@ public class DAOImpl implements DaoInterface {
 
     @Override
     public ChatCompletionResponse chatCompletion(String accessToken, ChatCompletionRequest request) throws IOException {
+
+
+        //param checking
+        if(checkParamForChatCompletion_Messages_role_content(request))
+        {
+            throw new MalformedRequestException("messages Object has either role or content Empty", new Throwable());
+        }
+        if(checkParamForChatCompletion_modelName(request))
+        {
+            throw new MalformedRequestException("Request object has Model name empty, please specify a model you wish to use", new Throwable());
+        }
+
         apiInterfaceObj = APIClient.getClient().create(apiInterface.class);
+
         LOGGER.info("making req" + accessToken + " with request "+ request.toString());
         Call<ChatCompletionResponse> call = apiInterfaceObj.chatCompletion(accessToken,request);
         Response<ChatCompletionResponse> response = call.execute();
 
-         if(response.isSuccessful())
+        if(response.isSuccessful())
         {
             chatCompletionResponseObj = response.body();
             LOGGER.info("Correct response" + chatCompletionResponseObj.toString());
@@ -92,9 +122,8 @@ public class DAOImpl implements DaoInterface {
             int httpStatusCode = response.code();
             String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
             LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
 
-            // You may want to throw a custom exception or log the error based on your needs
-            //throw new YourCustomException("API call was not successful");
         }
 
 

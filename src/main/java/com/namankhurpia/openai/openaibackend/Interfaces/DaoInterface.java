@@ -15,10 +15,13 @@ import java.io.IOException;
 
 public interface DaoInterface {
 
+    //input and model are mandatory fields
     ModerationAPIResponse getmoderation(@Header("Authorization")String accessToken, @Body ModerationAPIRequest request) throws IOException;
 
+    //model and prompt are mandatory fields
     CompletionResponse getCompletion(@Header("Authorization")String accessToken, @Body CompletionRequest request) throws IOException;
 
+    //model , message (role and content) are mandatory fields
     ChatCompletionResponse chatCompletion(@Header("Authorization") String accessToken, @Body ChatCompletionRequest request) throws  IOException;
 
 
