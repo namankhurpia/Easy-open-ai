@@ -34,10 +34,10 @@ public class DAOImpl implements DaoInterface {
     public ModerationAPIResponse getmoderation(String accessToken, ModerationAPIRequest request) throws IOException {
 
         //param checking
-        /*if(checkParamForModeration(request))
+        if(checkParamForModeration(request))
         {
             throw new MalformedRequestException("Request object has Model name empty or Input empty ", new Throwable());
-        }*/
+        }
 
         apiInterfaceObj = APIClient.getClient().create(com.namankhurpia.openai.openaibackend.Interfaces.apiInterface.class);
         //LOGGER.info("making req" + accessToken + " with request "+ request.toString());
