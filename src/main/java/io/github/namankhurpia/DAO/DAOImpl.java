@@ -2,22 +2,19 @@ package io.github.namankhurpia.DAO;
 
 import io.github.namankhurpia.Exception.MalformedRequestException;
 import io.github.namankhurpia.Interfaces.DaoInterface;
-import io.github.namankhurpia.Interfaces.apiInterface;
+import io.github.namankhurpia.Interfaces.RetrofitApiInterface;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
-import io.github.namankhurpia.Interfaces.apiInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.*;
 
 import java.io.IOException;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
 
 import static io.github.namankhurpia.Exception.ParameterCheckers.*;
 
@@ -29,7 +26,7 @@ public class DAOImpl implements DaoInterface {
     ChatCompletionResponse chatCompletionResponseObj;
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
 
-    apiInterface apiInterfaceObj ;
+    RetrofitApiInterface retrofitApiInterfaceObj;
 
 
 
@@ -42,11 +39,11 @@ public class DAOImpl implements DaoInterface {
             throw new MalformedRequestException("Request object has Model name empty or Input empty ", new Throwable());
         }
 
-        apiInterfaceObj = APIClient.getClient().create(io.github.namankhurpia.Interfaces.apiInterface.class);
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
         LOGGER.info("Making request " + accessToken + " with request " + request.toString());
 
 
-        Call<ModerationAPIResponse> call = apiInterfaceObj.getModeration("Bearer "+accessToken, request);
+        Call<ModerationAPIResponse> call = retrofitApiInterfaceObj.getModeration("Bearer "+accessToken, request);
 
         try {
             Response<ModerationAPIResponse> response = call.execute();
@@ -78,10 +75,10 @@ public class DAOImpl implements DaoInterface {
                 throw new MalformedRequestException("Request object has Model name empty or promp empty ", new Throwable());
             }
 
-            apiInterfaceObj = APIClient.getClient().create(apiInterface.class);
+            retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
 
             LOGGER.info("making req" + accessToken + " with request "+ request.toString());
-            Call<CompletionResponse> call = apiInterfaceObj.getCompletion("Bearer "+accessToken,request);
+            Call<CompletionResponse> call = retrofitApiInterfaceObj.getCompletion("Bearer "+accessToken,request);
             Response<CompletionResponse> response = call.execute();
 
             if(response.isSuccessful())
@@ -114,10 +111,10 @@ public class DAOImpl implements DaoInterface {
                 throw new MalformedRequestException("Request object has Model name empty, please specify a model you wish to use", new Throwable());
             }
 
-            apiInterfaceObj = APIClient.getClient().create(apiInterface.class);
+            retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
 
             LOGGER.info("making req" + accessToken + " with request "+ request.toString());
-            Call<ChatCompletionResponse> call = apiInterfaceObj.chatCompletion("Bearer "+accessToken,request);
+            Call<ChatCompletionResponse> call = retrofitApiInterfaceObj.chatCompletion("Bearer "+accessToken,request);
             Response<ChatCompletionResponse> response = call.execute();
 
             if(response.isSuccessful())

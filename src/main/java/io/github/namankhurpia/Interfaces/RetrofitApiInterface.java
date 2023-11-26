@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 import java.io.IOException;
 
 
-public interface apiInterface {
+public interface RetrofitApiInterface {
 
     //Moderation API to classify the input text
     @POST("/v1/moderations")

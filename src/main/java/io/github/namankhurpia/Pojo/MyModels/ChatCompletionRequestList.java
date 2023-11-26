@@ -1,6 +1,7 @@
 package io.github.namankhurpia.Pojo.MyModels;
 
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
+import lombok.Data;
 
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Collection;
 /**
  * contains all functionality of an arraylist
  */
+@Data
 public class ChatCompletionRequestList {
 
     /**

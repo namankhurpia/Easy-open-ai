@@ -3,6 +3,8 @@ package io.github.namankhurpia.Service;
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.DAO.DAOImpl;
 import io.github.namankhurpia.Interfaces.AsyncApiInterface;
+import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
+import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
@@ -19,8 +21,13 @@ public class AsyncModerationAPIServiceImpl implements AsyncApiInterface {
     }
 
     @Override
-    public ModerationAPIResponse getASyncmoderation(String accessToken, ModerationAPIRequest request) throws IOException, ExecutionException, InterruptedException {
-        return asyncdao.getASyncmoderation(accessToken,request);
+    public ModerationAPIResponse getASyncModeration(String accessToken, ModerationAPIRequest request) throws IOException, ExecutionException, InterruptedException {
+        return asyncdao.getASyncModeration(accessToken,request);
 
+    }
+
+    @Override
+    public ChatCompletionResponse getAsyncChatCompletion(String accessToken, ChatCompletionRequest request) throws IOException, ExecutionException, InterruptedException {
+       return asyncdao.getAsyncChatCompletion(accessToken,request);
     }
 }

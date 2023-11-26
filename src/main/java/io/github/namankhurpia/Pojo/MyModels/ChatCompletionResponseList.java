@@ -2,6 +2,8 @@ package io.github.namankhurpia.Pojo.MyModels;
 
 
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
+import lombok.Data;
+import retrofit2.http.Body;
 
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.Collection;
 /**
  * contains all functionality of an arraylist
  */
+@Data
 public class ChatCompletionResponseList {
 
     /**

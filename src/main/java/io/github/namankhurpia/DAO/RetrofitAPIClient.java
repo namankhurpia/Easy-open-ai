@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.github.namankhurpia.Interfaces.EndPoints.BASE_URL;
 
-public class APIClient {
+public class RetrofitAPIClient {
 
     private static Retrofit retrofit = null;
 
