@@ -1,13 +1,13 @@
-package io.github.namankhurpia.Service.MultipleCalls;
+package io.github.namankhurpia.Service;
 
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.Exception.InvalidSizeException;
-import io.github.namankhurpia.Interfaces.MultipleCallInterface;
-import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
+import io.github.namankhurpia.Interfaces.ConcurrentApiInterface;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.MyModels.ChatCompletionRequestList;
+import io.github.namankhurpia.Pojo.MyModels.ChatCompletionResponseList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationResponseList;
-import io.github.namankhurpia.Service.AsyncModerationAPIServiceImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,9 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 
-public class ConcurrentCalls implements MultipleCallInterface {
-
-    ModerationResponseList responseList;
+public class ConcurrentAPIServiceImpl implements ConcurrentApiInterface {
 
 
     @Override
@@ -54,9 +52,7 @@ public class ConcurrentCalls implements MultipleCallInterface {
             futures.add(resultFuture);
         }
 
-        CompletableFuture<Void> allOf = CompletableFuture.allOf(
-                futures.toArray(new CompletableFuture[0]));
-
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
 
 
         try {
@@ -75,8 +71,14 @@ public class ConcurrentCalls implements MultipleCallInterface {
             }
         }
 
+        ModerationResponseList responseList =  new ModerationResponseList(new ArrayList<ModerationAPIResponse>());
         // Handle the combined result or individual results as needed
-        System.out.println("Combined Result: " + results);
+        responseList.addAll(results);
+        return responseList;
+    }
+
+    @Override
+    public ChatCompletionResponseList CallMultipleChatCompletionAPI(String key, ChatCompletionRequestList requestList) {
         return null;
     }
 }

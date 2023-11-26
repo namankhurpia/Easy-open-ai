@@ -1,8 +1,8 @@
 package io.github.namankhurpia.Pojo.MyModels;
 
-import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
-import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
-import lombok.Data;
+
+import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,20 +10,19 @@ import java.util.Collection;
 /**
  * contains all functionality of an arraylist
  */
-@Data
-public class ModerationResponseList {
+public class ChatCompletionResponseList {
 
     /**
      *  Min Size = 1;
      */
-    ArrayList<ModerationAPIResponse> responseList;
+    ArrayList<ChatCompletionResponse> responseList;
 
-    public ModerationResponseList(ArrayList<ModerationAPIResponse> requestList)
+    public ChatCompletionResponseList(ArrayList<ChatCompletionResponse> requestList)
     {
         this.responseList = requestList;
     }
 
-    public void add(ModerationAPIResponse obj)
+    public void add(ChatCompletionResponse obj)
     {
         responseList.add(obj);
     }
@@ -33,7 +32,7 @@ public class ModerationResponseList {
         responseList.remove(index);
     }
 
-    public void remove(ModerationAPIResponse obj)
+    public void remove(ChatCompletionResponse obj)
     {
         responseList.remove(obj);
     }
@@ -43,7 +42,7 @@ public class ModerationResponseList {
         return responseList.size();
     }
 
-    public void add(int index, ModerationAPIResponse element)
+    public void add(int index, ChatCompletionResponse element)
     {
         responseList.add(index, element);
     }
@@ -63,17 +62,17 @@ public class ModerationResponseList {
         responseList.clear();
     }
 
-    public boolean contains(ModerationAPIResponse request)
+    public boolean contains(ChatCompletionResponse request)
     {
         return responseList.contains(request);
     }
 
-    public ModerationAPIResponse get(int index)
+    public ChatCompletionResponse get(int index)
     {
         return responseList.get(index);
     }
 
-    public int indexOf(ModerationAPIResponse obj)
+    public int indexOf(ChatCompletionResponse obj)
     {
         return responseList.indexOf(obj);
     }
@@ -82,6 +81,5 @@ public class ModerationResponseList {
     {
         return responseList.isEmpty();
     }
-
 
 }

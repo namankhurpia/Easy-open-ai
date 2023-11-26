@@ -3,16 +3,13 @@ package io.github.namankhurpia;
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.DAO.DAOImpl;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
-import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.ModerationRequestList;
-import io.github.namankhurpia.Pojo.MyModels.ModerationResponseList;
 import io.github.namankhurpia.Service.AsyncModerationAPIServiceImpl;
 import io.github.namankhurpia.Service.ModerationAPIServiceImpl;
-import io.github.namankhurpia.Service.MultipleCalls.ConcurrentCalls;
+import io.github.namankhurpia.Service.ConcurrentAPIServiceImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
@@ -52,8 +49,8 @@ public class Main {
 
         //ModerationAPIResponse res =  obj2.getASyncmoderation(OPENAI_KEY,request);
 
-        ConcurrentCalls concurrentCalls = new ConcurrentCalls();
-        concurrentCalls.CallMultipleModerationAPI(OPENAI_KEY,requestList);
+        ConcurrentAPIServiceImpl concurrentCalls = new ConcurrentAPIServiceImpl();
+        System.out.println(concurrentCalls.CallMultipleModerationAPI(OPENAI_KEY,requestList));
 
 
 
