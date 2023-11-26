@@ -5,6 +5,6 @@ import io.github.namankhurpia.Pojo.MyModels.ModerationResponseList;
 
 public interface MultipleCallInterface {
 
-    ModerationResponseList CallMultipleModerationAPI(ModerationRequestList requestList);
+    ModerationResponseList CallMultipleModerationAPI(String key,ModerationRequestList requestList);
 
 }
