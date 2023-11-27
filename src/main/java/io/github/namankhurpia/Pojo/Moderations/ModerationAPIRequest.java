@@ -19,8 +19,8 @@ public class ModerationAPIRequest {
 
     /**
      * You can use two types of models as of now
-     * 1. <text-moderation-latest>
-     * 2. <text-moderation-stable>
+     * 1. text-moderation-latest
+     * 2. text-moderation-stable
      *
      */
     @SerializedName("model")
