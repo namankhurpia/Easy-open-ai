@@ -73,8 +73,8 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>0xD361D318</keyname>
-                            <passphraseServerId>0xD361D318</passphraseServerId>
+                            <keyname>9f7e68f3d361d318</keyname>
+                            <passphraseServerId>namankhurpia</passphraseServerId>
                             <gpgArguments>
 
                                 <arg>--pinentry-mode</arg>
