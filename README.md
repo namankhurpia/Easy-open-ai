@@ -169,6 +169,77 @@ Click [here](#async-moderation-api) to jump to the code example.
 
 
 
+
+## Multi-Asynchronous Chat Completion API
+
+For multi-threading and concurrent calls with Chat Completion API, follow these steps:
+
+1. Create a `ChatCompletionRequestList` object:
+
+    ```java
+    ChatCompletionRequestList list = new ChatCompletionRequestList(new ArrayList<ChatCompletionRequest>());
+    ```
+
+2. Add multiple `ChatCompletionRequest` objects to the list:
+
+    ```java
+    // Example request 1
+    ChatCompletionRequest requestchat = new ChatCompletionRequest();
+    requestchat.setModel("gpt-3.5-turbo");
+    ChatMessage chatMessage = new ChatMessage();
+    chatMessage.setRole("user");
+    chatMessage.setContent("what is the capital of India?");
+    List<ChatMessage> messages = new ArrayList<>();
+    messages.add(chatMessage);
+    requestchat.setMessages(messages);
+    list.add(requestchat);
+
+    // Add more requests as needed (requestchat2, requestchat3, requestchat4, etc.)
+    ```
+
+3. Make the multi-asynchronous API call:
+
+    ```java
+    EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
+    ChatCompletionResponseList responseList = concurrentCalls.CallMultipleChatCompletionAPI(OPENAI_KEY, list);
+    System.out.println(responseList);
+    ```
+
+Click [here](#multi-async-chat-completion-api) to jump to the code example.
+
+## Multi-Asynchronous Moderation API
+
+For multi-threading and concurrent calls with the Moderation API, follow these steps:
+
+1. Create a `ModerationRequestList` object:
+
+    ```java
+    ModerationRequestList requestList = new ModerationRequestList(new ArrayList<ModerationAPIRequest>());
+    ```
+
+2. Add multiple `ModerationAPIRequest` objects to the list:
+
+    ```java
+    // Example request 1
+    ModerationAPIRequest request = new ModerationAPIRequest();
+    request.setInput("kill me now");
+    request.setModel("text-moderation-latest");
+    requestList.add(request);
+
+    // Add more requests as needed (request2, request3, request4, etc.)
+    ```
+
+3. Make the multi-asynchronous API call:
+
+    ```java
+    EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
+    ModerationResponseList responseList = concurrentCalls.CallMultipleModerationAPI(OPENAI_KEY, requestList);
+    System.out.println(responseList);
+    ```
+
+Click [here](#multi-async-moderation-api) to jump to the code example.
+
+
 # Dependencies
 
 Ensure you have the required dependencies installed before using the OpenAI API wrapper.
