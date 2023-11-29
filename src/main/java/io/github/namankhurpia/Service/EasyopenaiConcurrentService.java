@@ -3,7 +3,6 @@ package io.github.namankhurpia.Service;
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.Exception.InvalidSizeException;
 import io.github.namankhurpia.Interfaces.ConcurrentApiInterface;
-import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.ChatCompletionRequestList;
@@ -19,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 
-public class ConcurrentAPIServiceImpl implements ConcurrentApiInterface {
+public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
 
 
     @Override
@@ -31,7 +30,7 @@ public class ConcurrentAPIServiceImpl implements ConcurrentApiInterface {
         }
 
         List<CompletableFuture<ModerationAPIResponse>> futures = new ArrayList<>();
-        AsyncModerationAPIServiceImpl AsyncObj = new AsyncModerationAPIServiceImpl(new AsyncDAOImpl());
+        EasyopenaiAsyncService AsyncObj = new EasyopenaiAsyncService(new AsyncDAOImpl());
 
         for(int i=0;i<n;i++)
         {
@@ -88,7 +87,7 @@ public class ConcurrentAPIServiceImpl implements ConcurrentApiInterface {
         }
 
         List<CompletableFuture<ChatCompletionResponse>> futures = new ArrayList<>();
-        AsyncModerationAPIServiceImpl AsyncObj = new AsyncModerationAPIServiceImpl(new AsyncDAOImpl());
+        EasyopenaiAsyncService AsyncObj = new EasyopenaiAsyncService(new AsyncDAOImpl());
 
         for(int i=0;i<n;i++)
         {

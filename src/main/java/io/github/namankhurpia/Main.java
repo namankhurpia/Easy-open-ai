@@ -1,17 +1,15 @@
 package io.github.namankhurpia;
 
-import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.DAO.DAOImpl;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
+import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
-import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.ChatCompletionRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationRequestList;
-import io.github.namankhurpia.Service.AsyncModerationAPIServiceImpl;
-import io.github.namankhurpia.Service.ModerationAPIServiceImpl;
-import io.github.namankhurpia.Service.ConcurrentAPIServiceImpl;
+import io.github.namankhurpia.Service.EasyopenaiService;
+import io.github.namankhurpia.Service.EasyopenaiConcurrentService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,11 +22,37 @@ public class Main {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         System.out.println("Hello world!");
 
+        /**
+         * Moderation API single
+         */
+        /*
+        ModerationAPIRequest request = new ModerationAPIRequest();
+        request.setInput("kill me now");
+        request.setModel("text-moderation-latest");
 
-        ModerationAPIServiceImpl obj = new ModerationAPIServiceImpl(new DAOImpl());
+        EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
+        ModerationAPIResponse res =  obj.getmoderation(OPENAI_KEY,request);
+        */
 
-        //   ModerationAPIResponse res =  obj.getmoderation(key,request);
+        /**
+         * Chat Completion API single
+         */
+        EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
 
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setRole("user");
+        chatMessage.setContent("what is the capital of combodia?");
+
+        List<ChatMessage> messages = new ArrayList<>();
+        messages.add(chatMessage);
+
+        ChatCompletionRequest request = new ChatCompletionRequest();
+        request.setModel("gpt-3.5-turbo");
+        request.setMessages(messages); //old conversations as well
+        ChatCompletionResponse res = obj.chatCompletion(OPENAI_KEY,request);
+
+
+        /*
         ModerationAPIRequest request = new ModerationAPIRequest();
         request.setInput("kill me now");
         request.setModel("text-moderation-latest");
@@ -38,7 +62,7 @@ public class Main {
         request2.setModel("text-moderation-latest");
 
         ModerationAPIRequest request3 = new ModerationAPIRequest();
-        request3.setInput("SEX me now");
+        request3.setInput("yippee me now");
         request3.setModel("text-moderation-latest");
 
         ModerationAPIRequest request4 = new ModerationAPIRequest();
@@ -56,7 +80,7 @@ public class Main {
         //ModerationAPIResponse res =  obj2.getASyncModeration(OPENAI_KEY,request);
         //System.out.println(res);
 
-        ConcurrentAPIServiceImpl concurrentCalls = new ConcurrentAPIServiceImpl();
+        EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
         //System.out.println(concurrentCalls.CallMultipleModerationAPI(OPENAI_KEY,requestList));
 
 
@@ -112,7 +136,7 @@ public class Main {
         System.out.println(concurrentCalls.CallMultipleChatCompletionAPI(OPENAI_KEY, list));
 
 
-
+*/
 
     }
 }

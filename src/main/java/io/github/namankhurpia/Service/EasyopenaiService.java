@@ -14,11 +14,11 @@ import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import java.io.IOException;
 
 
-public class ModerationAPIServiceImpl implements DaoInterface {
+public class EasyopenaiService implements DaoInterface {
 
     private DAOImpl dao;
 
-    public ModerationAPIServiceImpl(DAOImpl dao) {
+    public EasyopenaiService(DAOImpl dao) {
         this.dao = dao;
     }
 

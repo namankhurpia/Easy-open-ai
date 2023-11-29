@@ -1,4 +1,4 @@
-package io.github.namankhurpia.Exception;
+package io.github.namankhurpia.Validators;
 
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
@@ -9,28 +9,40 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+/**
+ * This class contains static methods to check any obvious inconsistencies in request. (Mandatory field checks)
+ */
 public class ParameterCheckers {
 
-    //input and model are mandatory fields
+    /**
+     *  input and model are mandatory fields
+     */
+
     public static boolean checkParamForModeration(ModerationAPIRequest request)
     {
         return ( (StringUtils.isEmpty(request.getModel()) || request.getModel()==null) || (StringUtils.isEmpty(request.getInput()) || request.getInput()==null))?true:false;
     }
 
 
-    //model and prompt are mandatory fields
+    /**
+     * model and prompt are mandatory fields
+     */
     public static boolean checkParamForCompletion(CompletionRequest request)
     {
         return ( (StringUtils.isEmpty(request.getModel()) || request.getModel()==null) || (StringUtils.isEmpty(request.getPrompt()) || request.getPrompt()==null))?true:false;
     }
 
-    //model , message (role and content) are mandatory fields
+    /**
+     * model , message (role and content) are mandatory fields
+     */
     public static boolean checkParamForChatCompletion_modelName(ChatCompletionRequest request)
     {
         return (StringUtils.isEmpty(request.getModel()) || request.getModel()==null)?true:false;
     }
 
-    //model , message (role and content) are mandatory fields
+    /**
+     * model , message (role and content) are mandatory fields
+     */
     public static boolean checkParamForChatCompletion_Messages_role_content(ChatCompletionRequest request)
     {
         List<ChatMessage> messages = request.getMessages();
@@ -47,4 +59,13 @@ public class ParameterCheckers {
         }
         return false;
     }
+
+    /**
+     * checking if key is non null - further invalid checks and balance will be returned by openai's API
+     */
+    public static boolean isInValidOpenAIKey(String key)
+    {
+        return (StringUtils.isEmpty(key) || key==null)?true:false;
+    }
+
 }

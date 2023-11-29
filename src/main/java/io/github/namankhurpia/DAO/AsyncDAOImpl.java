@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import static io.github.namankhurpia.Exception.ParameterCheckers.*;
+import static io.github.namankhurpia.Validators.ParameterCheckers.*;
 
 public class AsyncDAOImpl implements AsyncApiInterface {
 
