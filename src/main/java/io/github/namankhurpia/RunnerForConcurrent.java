@@ -10,8 +10,11 @@ import io.github.namankhurpia.Pojo.MyModels.ModerationRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationResponseList;
 import io.github.namankhurpia.Service.EasyopenaiConcurrentService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 
@@ -52,6 +55,15 @@ public class RunnerForConcurrent {
 */
 
 
+        CallMultipleChatCompletionAPI_multikey_Test();
+
+
+
+
+    }
+
+    public static void CallMultipleChatCompletionAPI_Test()
+    {
         /**
          * Chat completion Multiple requests
          */
@@ -104,13 +116,11 @@ public class RunnerForConcurrent {
 
         ChatCompletionResponseList responseList = concurrentCalls.CallMultipleChatCompletionAPI(OPENAI_KEY, list);
         System.out.println(responseList);
-
-
-
     }
 
-    public static void CallMultipleChatCompletionAPI()
+    public static void CallMultipleChatCompletionAPI_multikey_Test()
     {
+        ArrayList<String> keyList = readKeys();
         EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
 
         ChatCompletionRequestList list = new ChatCompletionRequestList(new ArrayList<ChatCompletionRequest>());
@@ -158,12 +168,36 @@ public class RunnerForConcurrent {
         requestchat4.setMessages(messages4);
         list.add(requestchat4);
 
-        ArrayList<String> keyList = new ArrayList<>();
-        keyList.add("");
-        keyList.add("");
 
 
-        ChatCompletionResponseList responseList = concurrentCalls.CallMultipleChatCompletionAPI(OPENAI_KEY, list);
+        ChatCompletionResponseList responseList = concurrentCalls.CallMultipleChatCompletionAPI(keyList, list);
         System.out.println("response is"+responseList);
+    }
+
+    public static ArrayList<String> readKeys()
+    {
+        String filePath = "keys.txt";
+        ArrayList<String> keyList = new ArrayList<>();
+
+        // Open the file using Scanner
+        try {
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+
+            // Read each line and extract keys
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                // Assuming each line contains a key
+                keyList.add(line);
+                //System.out.println("Key: " + line);
+            }
+
+            // Close the scanner
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + filePath);
+            e.printStackTrace();
+        }
+        return keyList;
     }
 }
