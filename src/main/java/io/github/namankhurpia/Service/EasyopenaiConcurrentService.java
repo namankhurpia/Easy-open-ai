@@ -134,4 +134,74 @@ public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
         responseList.addAll(results);
         return responseList;
     }
+
+    @Override
+    public ChatCompletionResponseList CallMultipleChatCompletionAPI(ArrayList<String> keyList, ChatCompletionRequestList requestList) {
+
+        int n = requestList.size();
+        if(n<=0)
+        {
+            throw new InvalidSizeException("Chat Completion Request List must have atleast 1 instance",new Throwable());
+        }
+        int keyListSize = keyList.size();
+        if(keyListSize<=0)
+        {
+            throw new InvalidSizeException("Atleast one key must be added to keylist",new Throwable());
+        }
+
+        List<CompletableFuture<ChatCompletionResponse>> futures = new ArrayList<>();
+        EasyopenaiAsyncService AsyncObj = new EasyopenaiAsyncService(new AsyncDAOImpl());
+
+
+        for(int i=0;i<n;i++)
+        {
+            int index = i;
+            //managing key supplies in a round robin fashion
+            int keyindex = i % keyListSize;
+            String key = keyList.get(keyindex);
+
+            CompletableFuture<ChatCompletionResponse> resultFuture = CompletableFuture.supplyAsync(() ->{
+                try {
+                    return  AsyncObj.getAsyncChatCompletion(key,requestList.get(index));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+
+            });
+
+            futures.add(resultFuture);
+        }
+
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+
+
+        try {
+            allOf.get(); // Wait for all CompletableFuture instances to complete
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        // Process the results
+        List<ChatCompletionResponse> results = new ArrayList<>();
+        for (CompletableFuture<ChatCompletionResponse> future : futures) {
+            try {
+                results.add(future.get());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        ChatCompletionResponseList responseList =  new ChatCompletionResponseList(new ArrayList<ChatCompletionResponse>());
+        // Handle the combined result or individual results as needed
+        responseList.addAll(results);
+        return responseList;
+
+    }
+
 }
