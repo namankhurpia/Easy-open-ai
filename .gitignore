@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+keys.txt
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#my files
+keys.txt

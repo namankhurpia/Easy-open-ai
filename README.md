@@ -27,8 +27,8 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 
 ### Multi-Asynchronous
 
-- [Multiple Async Chat Completion API](#multi-async-chat-completion-api)
-- [Multiple Async Moderation API](#multi-async-moderation-api)
+- [Multithreaded Async Chat Completion API](#multithreaded-async-chat-completion-api)
+- [Multithreaded Async Moderation API](#multithreaded-async-moderation-api)
 
 
 ## Chat Completion API
@@ -170,7 +170,7 @@ Click [here](#async-moderation-api) to jump to the code example.
 
 
 
-## Multi-Asynchronous Chat Completion API
+## Multithreaded Async Chat Completion API
 
 For multi-threading and concurrent calls with Chat Completion API, follow these steps:
 
@@ -207,7 +207,7 @@ For multi-threading and concurrent calls with Chat Completion API, follow these 
 
 Click [here](#multi-async-chat-completion-api) to jump to the code example.
 
-## Multi-Asynchronous Moderation API
+## Multithreaded Async Moderation API
 
 For multi-threading and concurrent calls with the Moderation API, follow these steps:
 
