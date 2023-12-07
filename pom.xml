@@ -6,7 +6,7 @@
 
     <groupId>io.github.namankhurpia</groupId>
     <artifactId>easyopenai</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 
     <distributionManagement>
         <snapshotRepository>
