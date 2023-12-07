@@ -17,8 +17,8 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class RunnerForSingleInstance {
-    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         runMoDerationSingleInstance();
     }
 
