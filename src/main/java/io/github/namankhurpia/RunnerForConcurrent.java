@@ -21,11 +21,16 @@ import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 public class RunnerForConcurrent {
     public static void main(String[] args) {
 
+        CallMultipleChatCompletionAPI_multikey_Test();
 
+    }
+
+    public static void CallMultipleConcurrentAPI_Test()
+    {
         /**
          * Moderation Concurrent call
          */
-        /*
+
         ModerationAPIRequest request = new ModerationAPIRequest();
         request.setInput("kill me now");
         request.setModel("text-moderation-latest");
@@ -52,13 +57,6 @@ public class RunnerForConcurrent {
         EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
         ModerationResponseList responseList = concurrentCalls.CallMultipleModerationAPI(OPENAI_KEY,requestList);
         System.out.println(responseList);
-*/
-
-
-        CallMultipleChatCompletionAPI_multikey_Test();
-
-
-
 
     }
 
