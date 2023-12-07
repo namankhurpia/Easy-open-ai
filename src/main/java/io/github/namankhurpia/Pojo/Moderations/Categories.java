@@ -3,35 +3,33 @@ package io.github.namankhurpia.Pojo.Moderations;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 
-@JsonPropertyOrder({
-    "sexual",
-    "hate",
-    "violence",
-    "self-harm",
-    "sexual/minors",
-    "hate/threatening",
-    "violence/graphic"
-})
+
 
 @Data
 public class Categories {
-
-    @JsonProperty("sexual")
-    public Boolean sexual;
-    @JsonProperty("hate")
-    public Boolean hate;
-    @JsonProperty("violence")
-    public Boolean violence;
-    @JsonProperty("self-harm")
+    
+    
+    @SerializedName("harassment")
+    public Boolean harassment;
+    @SerializedName("self-harm")
     public Boolean selfHarm;
-    @JsonProperty("sexual/minors")
+    @SerializedName("sexual/minors")
     public Boolean sexualMinors;
-    @JsonProperty("hate/threatening")
+    @SerializedName("hate/threatening")
     public Boolean hateThreatening;
-    @JsonProperty("violence/graphic")
+    @SerializedName("violence/graphic")
     public Boolean violenceGraphic;
+    @SerializedName("self-harm/intent")
+    public Boolean selfHarmIntent;
+    @SerializedName("self-harm/instructions")
+    public Boolean selfHarmInstructions;
+    @SerializedName("harassment/threatening")
+    public Boolean harassmentThreatening;
+    @SerializedName("violence")
+    public Boolean violence;
 
 }

@@ -9,6 +9,8 @@ import io.github.namankhurpia.Pojo.MyModels.ChatCompletionRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ChatCompletionResponseList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ModerationResponseList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.concurrent.ExecutionException;
 import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 
 public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(EasyopenaiConcurrentService.class);
 
 
     @Override
@@ -92,6 +96,7 @@ public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
         for(int i=0;i<n;i++)
         {
             int index = i;
+
             CompletableFuture<ChatCompletionResponse> resultFuture = CompletableFuture.supplyAsync(() ->{
                 try {
                     return  AsyncObj.getAsyncChatCompletion(OPENAI_KEY,requestList.get(index));
@@ -149,6 +154,7 @@ public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
             throw new InvalidSizeException("Atleast one key must be added to keylist",new Throwable());
         }
 
+
         List<CompletableFuture<ChatCompletionResponse>> futures = new ArrayList<>();
         EasyopenaiAsyncService AsyncObj = new EasyopenaiAsyncService(new AsyncDAOImpl());
 
@@ -159,6 +165,8 @@ public class EasyopenaiConcurrentService implements ConcurrentApiInterface {
             //managing key supplies in a round robin fashion
             int keyindex = i % keyListSize;
             String key = keyList.get(keyindex);
+
+            LOGGER.info("Making req:"+ requestList.get(index) + " with key"+ key );
 
             CompletableFuture<ChatCompletionResponse> resultFuture = CompletableFuture.supplyAsync(() ->{
                 try {
