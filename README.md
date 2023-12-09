@@ -19,6 +19,7 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 
 - [Chat Completion API](#chat-completion-api)
 - [Moderation API](#moderation-api)
+- [Vision API](#vision-api)
 
 ### Asynchronous
 
@@ -103,6 +104,80 @@ System.out.println(res);
 
 Click [here](#moderation-api) to jump to the code example.
 
+## Vision API
+
+Vision API 
+To use the Vision API, follow these steps:
+
+1. Initialize the EasyopenaiService object with an instance of DAOImpl:
+
+
+```java
+EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
+```
+
+2. Create a VisionApiRequest object:
+
+
+```java
+VisionApiRequest request = new VisionApiRequest();
+```
+3. Create an ImageUrl object with the image URL and detail:
+
+
+```java
+ImageUrl url = new ImageUrl();
+url.setUrl("https://images.pexels.com/photos/18907092/pexels-photo-18907092/free-photo-of-a-photo-of-the-golden-gate-bridge-in-the-sky.jpeg");
+url.setDetail("low");
+```
+4. Create a list of Content objects to represent the messages:
+
+
+```java
+Content content1 = new Content();
+content1.setText("What’s in this image?");
+content1.setType("text");
+
+Content content2 = new Content();
+content2.setImageUrl(url);
+content2.setType("image_url");
+
+ArrayList<Content> listofContent = new ArrayList<>();
+listofContent.add(content1);
+listofContent.add(content2);
+```
+5. Create a MessageList object with the role ("user") and the list of content:
+
+
+```java
+MessageList messageList = new MessageList();
+messageList.setRole("user");
+messageList.setContent(listofContent);
+```
+6. Create a list of MessageList objects:
+
+
+```java
+ArrayList<MessageList> listofMessage = new ArrayList<>();
+listofMessage.add(messageList);
+```
+7. Set various properties of the VisionApiRequest object:
+
+
+```java
+request.setModel("gpt-4-vision-preview");
+request.setMaxTokens(300);
+request.setMessages(listofMessage);
+```
+8. Make the API call and Print Response:
+
+
+```java
+VisionApiResponse res = obj.visionAPI(OPENAI_KEY, request);
+System.out.println("Vision API Response is:" + res);
+```
+
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 ## Async Chat Completion API
 
