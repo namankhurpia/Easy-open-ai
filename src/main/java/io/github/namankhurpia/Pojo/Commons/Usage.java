@@ -1,12 +1,15 @@
 package io.github.namankhurpia.Pojo.Commons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 /**
  * usage
  * object
  * Usage statistics for the completion request.
  */
+
+@Data
 public class Usage {
 
     @JsonProperty("prompt_tokens")

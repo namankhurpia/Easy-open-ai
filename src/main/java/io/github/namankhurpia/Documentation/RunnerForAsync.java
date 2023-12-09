@@ -1,4 +1,4 @@
-package io.github.namankhurpia;
+package io.github.namankhurpia.Documentation;
 
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;

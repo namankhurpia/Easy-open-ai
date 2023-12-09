@@ -10,6 +10,8 @@ import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
+import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
+import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.*;
@@ -24,6 +26,8 @@ public class DAOImpl implements DaoInterface {
     CompletionResponse completionResponseObj;
 
     ChatCompletionResponse chatCompletionResponseObj;
+
+    VisionApiResponse visionApiResponseObj;
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
 
     RetrofitApiInterface retrofitApiInterfaceObj;
@@ -54,9 +58,11 @@ public class DAOImpl implements DaoInterface {
             } else {
                 int httpStatusCode = response.code();
                 String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
-                System.out.println("HTTP Status Code: " + httpStatusCode);
-                System.out.println("Error Body: " + errorBody.toString());
+                String errorBodyString = response.errorBody().string();
+                System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+
                 throw new MalformedRequestException(errorBody, new Throwable(errorBody));
+
             }
         } catch (IOException e) {
             // Handle IO exception
@@ -90,7 +96,8 @@ public class DAOImpl implements DaoInterface {
             {
                 int httpStatusCode = response.code();
                 String errorBody = response.errorBody() != null ? response.errorBody().string() : "Empty error body";
-                LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
+                String errorBodyString = response.errorBody().string();
+                System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
                 throw new MalformedRequestException(errorBody, new Throwable(errorBody));
             }
 
@@ -126,7 +133,8 @@ public class DAOImpl implements DaoInterface {
             {
                 int httpStatusCode = response.code();
                 String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
-                LOGGER.error("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBody);
+                String errorBodyString = response.errorBody().string();
+                System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
                 throw new MalformedRequestException(errorBody, new Throwable(errorBody));
 
             }
@@ -137,10 +145,32 @@ public class DAOImpl implements DaoInterface {
             return  chatCompletionResponseObj;
         }
 
+    @Override
+    public VisionApiResponse visionAPI(String accessToken, VisionApiRequest request) throws IOException {
 
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
+        LOGGER.info("making req" + accessToken + " with request "+ request.toString());
 
+        Call<VisionApiResponse> call =  retrofitApiInterfaceObj.visionAPI("Bearer "+accessToken,request);
+        Response<VisionApiResponse> response = call.execute();
 
+        if(response.isSuccessful())
+        {
+            visionApiResponseObj = response.body();
+            LOGGER.info("Correct response" + visionApiResponseObj.toString());
+        }
+        else {
+            int httpStatusCode = response.code();
 
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
+            String errorBodyString = response.errorBody().string();
+            System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
+
+        }
+
+        return visionApiResponseObj;
+    }
 
 
 }
