@@ -6,6 +6,8 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
+import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 
@@ -22,5 +24,6 @@ public interface DaoInterface {
     //model , message (role and content) are mandatory fields
     ChatCompletionResponse chatCompletion(@Header("Authorization") String accessToken, @Body ChatCompletionRequest request) throws  IOException;
 
+    VisionApiResponse visionAPI(@Header("Authorization")String accessToken, @Body VisionApiRequest request)throws  IOException;
 
 }

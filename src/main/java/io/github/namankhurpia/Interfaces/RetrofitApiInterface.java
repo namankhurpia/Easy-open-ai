@@ -5,6 +5,8 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
+import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
@@ -32,5 +34,9 @@ public interface RetrofitApiInterface {
     @POST("/v1/chat/completions")
     Call<ChatCompletionResponse> chatCompletion(@Header("Authorization") String accessToken, @Body ChatCompletionRequest request) throws  IOException;
 
+
+    //gpt-4-vision-preview
+    @POST("/v1/chat/completions")
+    Call<VisionApiResponse> visionAPI(@Header("Authorization") String accessToken, @Body VisionApiRequest request) throws IOException;
 
 }

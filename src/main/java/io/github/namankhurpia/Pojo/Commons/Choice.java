@@ -1,7 +1,9 @@
 package io.github.namankhurpia.Pojo.Commons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import io.github.namankhurpia.Pojo.ChatCompletion.Message;
+import io.github.namankhurpia.Pojo.Vision.FinishDetails;
 import lombok.Data;
 
 
@@ -14,21 +16,29 @@ import lombok.Data;
 @Data
 public class Choice {
 
-
+    @SerializedName("text")
     @JsonProperty("text")
     public String text;
 
+    @SerializedName("index")
     @JsonProperty("index")
     public Integer index;
 
+    @SerializedName("logprobs")
     @JsonProperty("logprobs")
     public Object logprobs;
 
+    @SerializedName("message")
     @JsonProperty("message")
     public Message message;
 
+    @SerializedName("finish_reason")
     @JsonProperty("finish_reason")
     public String finish_reason;
+
+    @SerializedName("finish_details")
+    @JsonProperty("finish_details")
+    public FinishDetails finishDetails;
 
 
 }

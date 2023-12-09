@@ -1,4 +1,4 @@
-package io.github.namankhurpia;
+package io.github.namankhurpia.Documentation;
 
 import io.github.namankhurpia.DAO.DAOImpl;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
@@ -6,6 +6,7 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.Vision.*;
 import io.github.namankhurpia.Service.EasyopenaiService;
 
 import java.io.File;
@@ -19,10 +20,55 @@ import java.util.concurrent.ExecutionException;
 public class RunnerForSingleInstance {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        runMoDerationSingleInstance();
+        //runMoDerationSingleInstance();
+        runVisionAPI();
     }
 
+    public static void runVisionAPI() throws IOException
+    {
+        /**
+         * Vision API Single Instance
+         */
+        ArrayList<String> keys = readKeys();
+        VisionApiRequest request = new VisionApiRequest();
 
+        ImageUrl url = new ImageUrl();
+        url.setUrl("https://images.pexels.com/photos/18907092/pexels-photo-18907092/free-photo-of-a-photo-of-the-golden-gate-bridge-in-the-sky.jpeg");
+        url.setDetail("low");
+
+        Content content1 = new Content();
+        content1.setText("What’s in this image?");
+        content1.setType("text");
+
+        Content content2 = new Content();
+        content2.setImageUrl(url);
+        content2.setType("image_url");
+
+        ArrayList<Content> listofContent = new ArrayList<>();
+        listofContent.add(content1);
+        listofContent.add(content2);
+
+        MessageList messageList = new MessageList();
+        messageList.setRole("user");
+        messageList.setContent(listofContent);
+
+        ArrayList<MessageList> listofMessage= new ArrayList<>();
+        listofMessage.add(messageList);
+
+        request.setModel("gpt-4-vision-preview");
+        request.setMaxTokens(300);
+        request.setMessages(listofMessage);
+
+        System.out.println(request);
+
+        EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
+        VisionApiResponse res = obj.visionAPI(keys.get(0),request);
+        System.out.println("Response is:"+res);
+
+
+
+
+    }
 
     public static void runMoDerationSingleInstance() throws IOException {
         /**
@@ -60,6 +106,8 @@ public class RunnerForSingleInstance {
         ChatCompletionResponse res = obj.chatCompletion(keys.get(0),request);
 
     }
+
+
 
 
     public static ArrayList<String> readKeys()
