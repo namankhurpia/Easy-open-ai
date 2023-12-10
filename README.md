@@ -19,7 +19,7 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 
 - [Chat Completion API](#chat-completion-api)
 - [Moderation API](#moderation-api)
-- [Easy Vision API](#easyvisionapi)  or  [Vision API](#vision-api) (original provided by OpenAI)
+- [Easy Vision API](#easy-vision-api)  or  [Vision API](#vision-api) (original provided by OpenAI)
 
 ### Asynchronous
 
@@ -121,6 +121,9 @@ VisionApiResponse responseobj = new EasyVisionService().VisionAPI("OPENAI_KEY", 
 ```java
 .setMaxtokens(1000) //Optional - for more tokens, defaults to 300
 ```
+
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
+
 
 ## Vision API
 
