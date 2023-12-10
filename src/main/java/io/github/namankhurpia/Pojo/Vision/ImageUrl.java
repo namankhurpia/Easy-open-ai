@@ -15,4 +15,11 @@ public class ImageUrl {
     @JsonProperty("detail")
     public String detail;
 
+    public ImageUrl(String url, String detail) {
+        this.url = url;
+        this.detail = detail;
+    }
+
+    public ImageUrl() {
+    }
 }

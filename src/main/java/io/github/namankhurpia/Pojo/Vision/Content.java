@@ -19,4 +19,12 @@ public class Content {
     @JsonProperty("image_url")
     public ImageUrl imageUrl;
 
+    public Content(String type, String text, ImageUrl imageUrl) {
+        this.type = type;
+        this.text = text;
+        this.imageUrl = imageUrl;
+    }
+
+    public Content() {
+    }
 }

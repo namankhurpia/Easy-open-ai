@@ -6,7 +6,9 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
 import io.github.namankhurpia.Pojo.Vision.*;
+import io.github.namankhurpia.Service.EasyVisionService;
 import io.github.namankhurpia.Service.EasyopenaiService;
 
 import java.io.File;
@@ -21,7 +23,49 @@ public class RunnerForSingleInstance {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         //runMoDerationSingleInstance();
-        runVisionAPI();
+        //runVisionAPI();
+        //runEasyVisionAPI();
+        //runEasyVisionAPI2();
+    }
+
+    public static void runEasyVisionAPI()throws IOException
+    {
+
+        /**
+         * EASY VISION API
+         */
+        ArrayList<String> keys = readKeys();
+        EasyVisionRequest request = new EasyVisionRequest();
+        request.setModel("gpt-4-vision-preview");
+        request.setPrompt("What are the difference between these images");
+
+        ArrayList<String> imageurls = new ArrayList<>();
+        imageurls.add("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+        imageurls.add("https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+        request.setImageUrls(imageurls);
+
+        EasyVisionService obj = new EasyVisionService();
+        VisionApiResponse response = obj.VisionAPI(keys.get(0),request);
+        System.out.println(response);
+
+
+    }
+
+    public static void runEasyVisionAPI2()throws IOException
+    {
+        /**
+         * EASY VISION API - ONE LINER
+         */
+        VisionApiResponse response = new EasyVisionService().VisionAPI(readKeys().get(0), new EasyVisionRequest()
+                .setModel("gpt-4-vision-preview")
+                .setPrompt("What are the difference between these images")
+                .setMaxtokens(300)
+                .setImageUrls(new ArrayList<String>() {{
+                    add("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+                    add("https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+                }}));
+
+        System.out.println(response);
     }
 
     public static void runVisionAPI() throws IOException
