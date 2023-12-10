@@ -19,7 +19,7 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 
 - [Chat Completion API](#chat-completion-api)
 - [Moderation API](#moderation-api)
-- [Vision API](#vision-api)
+- [Easy Vision API](#easyvisionapi)  or  [Vision API](#vision-api) (original provided by OpenAI)
 
 ### Asynchronous
 
@@ -104,9 +104,26 @@ System.out.println(res);
 
 Click [here](#moderation-api) to jump to the code example.
 
+## Easy Vision API
+
+Vision API can be used like this, feel free to add N number of images in list of Images-
+
+```java
+VisionApiResponse responseobj = new EasyVisionService().VisionAPI("OPENAI_KEY", new EasyVisionRequest()
+       .setModel("gpt-4-vision-preview")
+       .setPrompt("What are the difference between these images?")
+       .setImageUrls(new ArrayList<String>() {{
+           add("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+           add("https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+       }}));
+```
+
+```java
+.setMaxtokens(1000) //Optional - for more tokens, defaults to 300
+```
+
 ## Vision API
 
-Vision API 
 To use the Vision API, follow these steps:
 
 1. Initialize the EasyopenaiService object with an instance of DAOImpl:
@@ -326,42 +343,42 @@ Ensure you have the required dependencies installed before using the OpenAI API 
 <dependency>
     <groupId>io.github.namankhurpia</groupId>
     <artifactId>easyopenai</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
 ## Groovy - Gradle
 ```
-implementation group: 'io.github.namankhurpia', name: 'easyopenai', version: '1.0.0'
+implementation group: 'io.github.namankhurpia', name: 'easyopenai', version: '1.0.4'
 ```
 
 ## Gradle Java -
 ```
-implementation 'io.github.namankhurpia:easyopenai:1.0.0'
+implementation 'io.github.namankhurpia:easyopenai:1.0.4'
 ```
 ## Gradle Kotlin-
 ```
-implementation("io.github.namankhurpia:easyopenai:1.0.0")
+implementation("io.github.namankhurpia:easyopenai:1.0.4")
 ```
 ## SBT -
 ```
-libraryDependencies += "io.github.namankhurpia" % "easyopenai" % "1.0.0"
+libraryDependencies += "io.github.namankhurpia" % "easyopenai" % "1.0.4"
 ```
 ## Ivy-
 ```
-<dependency org="io.github.namankhurpia" name="easyopenai" rev="1.0.0"/>
+<dependency org="io.github.namankhurpia" name="easyopenai" rev="1.0.4"/>
 ```
 ## Grape-
 ```
 @Grapes(
-@Grab(group='io.github.namankhurpia', module='easyopenai', version='1.0.0')
+@Grab(group='io.github.namankhurpia', module='easyopenai', version='1.0.4')
 )
 ```
 ## Leiningen
 ```
-[io.github.namankhurpia/easyopenai "1.0.0"]
+[io.github.namankhurpia/easyopenai "1.0.4"]
 ```
 ## Buildr
 ```
-'io.github.namankhurpia:easyopenai:jar:1.0.0'
+'io.github.namankhurpia:easyopenai:jar:1.0.4'
 ```
