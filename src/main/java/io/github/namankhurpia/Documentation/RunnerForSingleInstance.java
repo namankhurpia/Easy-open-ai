@@ -24,12 +24,16 @@ public class RunnerForSingleInstance {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         //runMoDerationSingleInstance();
         //runVisionAPI();
-        runEasyVisionAPI();
+        //runEasyVisionAPI();
+        //runEasyVisionAPI2();
     }
 
     public static void runEasyVisionAPI()throws IOException
     {
-        /*
+
+        /**
+         * EASY VISION API
+         */
         ArrayList<String> keys = readKeys();
         EasyVisionRequest request = new EasyVisionRequest();
         request.setModel("gpt-4-vision-preview");
@@ -44,24 +48,24 @@ public class RunnerForSingleInstance {
         VisionApiResponse response = obj.VisionAPI(keys.get(0),request);
         System.out.println(response);
 
-*/
 
+    }
 
-        VisionApiResponse responseobj = new EasyVisionService().VisionAPI(readKeys().get(0), new EasyVisionRequest()
+    public static void runEasyVisionAPI2()throws IOException
+    {
+        /**
+         * EASY VISION API - ONE LINER
+         */
+        VisionApiResponse response = new EasyVisionService().VisionAPI(readKeys().get(0), new EasyVisionRequest()
                 .setModel("gpt-4-vision-preview")
                 .setPrompt("What are the difference between these images")
-                        .setMaxtokens()
+                .setMaxtokens(300)
                 .setImageUrls(new ArrayList<String>() {{
                     add("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
                     add("https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
                 }}));
 
-        System.out.println(responseobj);
-
-
-
-
-
+        System.out.println(response);
     }
 
     public static void runVisionAPI() throws IOException
