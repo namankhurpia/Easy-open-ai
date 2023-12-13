@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.Map;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ChatCompletionRequest {
 
@@ -151,6 +154,4 @@ public class ChatCompletionRequest {
 
     }
 
-    public ChatCompletionRequest() {
-    }
 }
