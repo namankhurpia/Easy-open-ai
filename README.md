@@ -45,12 +45,12 @@ EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
 2. Create a list of `ChatMessage` objects to represent the conversation:
 
 ```java
-ChatMessage chatMessage = new ChatMessage();
-chatMessage.setRole("user");
-chatMessage.setContent("what is the capital of Cambodia?");
+ChatMessage message = new ChatMessage();
+message.setRole("user");
+message.setContent("what is the capital of Cambodia?");
     
 List<ChatMessage> messages = new ArrayList<>();
-messages.add(chatMessage);
+messages.add(message);
 ```
 
 3. Create a `ChatCompletionRequest` object:
@@ -212,12 +212,12 @@ To use the Chat Completion API asynchronously, follow these steps:
 2. Create a list of `ChatMessage` objects to represent the conversation:
 
     ```java
-    ChatMessage chatMessage = new ChatMessage();
-    chatMessage.setRole("user");
-    chatMessage.setContent("what is the capital of Cambodia?");
+    ChatMessage message = new ChatMessage();
+    message.setRole("user");
+    message.setContent("what is the capital of Cambodia?");
     
     List<ChatMessage> messages = new ArrayList<>();
-    messages.add(chatMessage);
+    messages.add(message);
     ```
 
 3. Create a `ChatCompletionRequest` object:
@@ -281,11 +281,11 @@ For multi-threading and concurrent calls with Chat Completion API, follow these 
     // Example request 1
     ChatCompletionRequest requestchat = new ChatCompletionRequest();
     requestchat.setModel("gpt-3.5-turbo");
-    ChatMessage chatMessage = new ChatMessage();
-    chatMessage.setRole("user");
-    chatMessage.setContent("what is the capital of India?");
+    ChatMessage message = new ChatMessage();
+    message.setRole("user");
+    message.setContent("what is the capital of India?");
     List<ChatMessage> messages = new ArrayList<>();
-    messages.add(chatMessage);
+    messages.add(message);
     requestchat.setMessages(messages);
     list.add(requestchat);
 

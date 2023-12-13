@@ -1,7 +1,7 @@
 package io.github.namankhurpia.Validators;
 
+import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
-import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,7 @@ public class ParameterCheckers {
      */
     public static boolean checkParamForChatCompletion_Messages_role_content(ChatCompletionRequest request)
     {
-        List<ChatMessage> messages = request.getMessages();
+        List<Message> messages = request.getMessages();
         if(messages.size()<=0)
         {
             return true;

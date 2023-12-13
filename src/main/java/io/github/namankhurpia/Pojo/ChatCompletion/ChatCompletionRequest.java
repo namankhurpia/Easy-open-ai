@@ -12,63 +12,19 @@ import java.util.Map;
 @Data
 public class ChatCompletionRequest {
 
-    /**
-     * ID of the model to use.
-     */
-    String model;
 
     /**
      * The messages to generate chat completions for, in the <a
      * href="https://platform.openai.com/docs/guides/chat/introduction">chat format</a>.<br>
-     * see {@link ChatMessage}
+     * see {@link Message}
      */
-    List<ChatMessage> messages;
+    List<Message> messages;
+
 
     /**
-     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower
-     * values like 0.2 will make it more focused and deterministic.<br>
-     * We generally recommend altering this or top_p but not both.
+     * ID of the model to use.
      */
-    Double temperature;
-
-    /**
-     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens
-     * with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br>
-     * We generally recommend altering this or temperature but not both.
-     */
-    @JsonProperty("top_p")
-    Double topP;
-
-    /**
-     * How many chat completion chatCompletionChoices to generate for each input message.
-     */
-    Integer n;
-
-    /**
-     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only <a
-     * href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format">server-sent
-     * events</a> as they become available, with the stream terminated by a data: [DONE] message.
-     */
-    Boolean stream;
-
-    /**
-     * Up to 4 sequences where the API will stop generating further tokens.
-     */
-    List<String> stop;
-
-    /**
-     * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can return will
-     * be (4096 - prompt tokens).
-     */
-    @JsonProperty("max_tokens")
-    Integer maxTokens;
-
-    /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
-     * increasing the model's likelihood to talk about new topics.
-     */
-    @JsonProperty("presence_penalty")
-    Double presencePenalty;
+    String model;
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far,
@@ -86,11 +42,91 @@ public class ChatCompletionRequest {
     @JsonProperty("logit_bias")
     Map<String, Integer> logitBias;
 
+    /**
+     * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can return will
+     * be (4096 - prompt tokens).
+     */
+    @JsonProperty("max_tokens")
+    Integer maxTokens;
+
+    /**
+     * How many chat completion chatCompletionChoices to generate for each input message.
+     */
+    Integer n;
+
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
+     * increasing the model's likelihood to talk about new topics.
+     */
+    @JsonProperty("presence_penalty")
+    Double presencePenalty;
+
+    /**
+     * FOR - response_format
+     * An object specifying the format that the model must output.
+     *
+     * Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.
+     *
+     * Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
+     */
+    String type;
+
+    /**
+     * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the system_fingerprint response parameter to monitor changes in the backend.
+     */
+    Integer seed;
+
+    /**
+     * Up to 4 sequences where the API will stop generating further tokens.
+     */
+    List<String> stop;
+
+    /**
+     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only <a
+     * href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format">server-sent
+     * events</a> as they become available, with the stream terminated by a data: [DONE] message.
+     */
+    Boolean stream;
+
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower
+     * values like 0.2 will make it more focused and deterministic.<br>
+     * We generally recommend altering this or top_p but not both.
+     */
+    Double temperature;
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens
+     * with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br>
+     * We generally recommend altering this or temperature but not both.
+     */
+    @JsonProperty("top_p")
+    Double topP;
+
+    /**
+     * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
+     */
+    List<Tools> tools;
+
+
+    /**
+     * Controls which (if any) function is called by the model. none means the model will not call a function and instead generates a message. auto means the model can pick between generating a message or calling a function. Specifying a particular function via {"type: "function", "function": {"name": "my_function"}} forces the model to call that function.
+     *
+     * none is the default when no functions are present. auto is the default if functions are present.
+     *
+     */
+    ToolChoice tool_choice;
 
     /**
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
     String user;
+
+
+    /**
+     * Function_call is deprecated, use tool_choice
+     */
+
 
     /**
      * A list of the available functions.
