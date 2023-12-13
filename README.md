@@ -3,7 +3,7 @@ This repo contains the community library for OpenAI's API in java, the easiest w
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai)
 
-[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.0-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
+[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.5-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
 
 # Usage
 
@@ -317,42 +317,42 @@ Ensure you have the required dependencies installed before using the OpenAI API 
 <dependency>
     <groupId>io.github.namankhurpia</groupId>
     <artifactId>easyopenai</artifactId>
-    <version>1.0.4</version>
+    <version>x.x.x</version>
 </dependency>
 ```
 
 ## Groovy - Gradle
 ```
-implementation group: 'io.github.namankhurpia', name: 'easyopenai', version: '1.0.4'
+implementation group: 'io.github.namankhurpia', name: 'easyopenai', version: 'x.x.x'
 ```
 
 ## Gradle Java -
 ```
-implementation 'io.github.namankhurpia:easyopenai:1.0.4'
+implementation 'io.github.namankhurpia:easyopenai:x.x.x'
 ```
 ## Gradle Kotlin-
 ```
-implementation("io.github.namankhurpia:easyopenai:1.0.4")
+implementation("io.github.namankhurpia:easyopenai:x.x.x")
 ```
 ## SBT -
 ```
-libraryDependencies += "io.github.namankhurpia" % "easyopenai" % "1.0.4"
+libraryDependencies += "io.github.namankhurpia" % "easyopenai" % "x.x.x"
 ```
 ## Ivy-
 ```
-<dependency org="io.github.namankhurpia" name="easyopenai" rev="1.0.4"/>
+<dependency org="io.github.namankhurpia" name="easyopenai" rev="x.x.x"/>
 ```
 ## Grape-
 ```
 @Grapes(
-@Grab(group='io.github.namankhurpia', module='easyopenai', version='1.0.4')
+@Grab(group='io.github.namankhurpia', module='easyopenai', version='x.x.x')
 )
 ```
 ## Leiningen
 ```
-[io.github.namankhurpia/easyopenai "1.0.4"]
+[io.github.namankhurpia/easyopenai "x.x.x"]
 ```
 ## Buildr
 ```
-'io.github.namankhurpia:easyopenai:jar:1.0.4'
+'io.github.namankhurpia:easyopenai:jar:x.x.x'
 ```
