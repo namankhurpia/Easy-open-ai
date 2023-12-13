@@ -55,7 +55,7 @@ ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompl
 
 ```
 
-Click [here](#chat-completion-api) to jump to the code example.
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 ## Moderation API
 
@@ -73,7 +73,7 @@ ModerationAPIRequest request = ModerationAPIRequest.builder()
 ModerationAPIResponse res = new EasyopenaiService(new DAOImpl()).getmoderation("OPENAI_KEY",request);
 ```
 
-Click [here](#moderation-api) to jump to the code example.
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 ## Easy Vision API
 
