@@ -2,8 +2,7 @@ package io.github.namankhurpia.Pojo.ChatCompletion;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +11,9 @@ import java.util.List;
  * This class encapsulates - System Message, User Message, Assistant Message, Tool Message, Function Message
  * Refer - https://platform.openai.com/docs/api-reference/chat/create
  */
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Message {
 
@@ -44,7 +46,4 @@ public class Message {
         this.name = name;
     }
 
-    public Message() {
-
-    }
 }

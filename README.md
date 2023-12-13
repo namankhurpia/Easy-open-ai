@@ -36,41 +36,23 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 
 To use the Chat Completion API, follow these steps:
 
-1. Initialize the `EasyopenaiService` object with an instance of `DAOImpl`:
-
 ```java
-EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
-```
 
-2. Create a list of `ChatMessage` objects to represent the conversation:
+Message message = Message.builder()
+       .role("user")
+       .content("what is the capital of Cambodia?")
+       .build();
 
-```java
-ChatMessage message = new ChatMessage();
-message.setRole("user");
-message.setContent("what is the capital of Cambodia?");
-    
-List<ChatMessage> messages = new ArrayList<>();
+List<Message> messages = new ArrayList<>();
 messages.add(message);
-```
 
-3. Create a `ChatCompletionRequest` object:
+ChatCompletionRequest request = ChatCompletionRequest.builder()
+       .model("gpt-3.5-turbo")
+       .messages(messages)
+       .build();
 
-```java
-ChatCompletionRequest request = new ChatCompletionRequest();
-request.setModel("gpt-3.5-turbo");
-request.setMessages(messages); // attach all old conversations here
-```
+ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompletion(keys.get(0),request);
 
-4. Make the API call:
-
-```java
-ChatCompletionResponse res = obj.chatCompletion(OPENAI_KEY, request);
-```
-
-5. Print the response:
-
-```java
-System.out.println(res);
 ```
 
 Click [here](#chat-completion-api) to jump to the code example.
@@ -81,25 +63,14 @@ Click [here](#chat-completion-api) to jump to the code example.
 
 To use the Moderation API, follow these steps:
 
-1. Create a `ModerationAPIRequest` object:
-
 ```java
-ModerationAPIRequest request = new ModerationAPIRequest();
-request.setInput("your input text");
-request.setModel("text-moderation-latest"); // model name
-```
 
-2. Initialize the `EasyopenaiService` object with an instance of `DAOImpl` and Make the API call::
+ModerationAPIRequest request = ModerationAPIRequest.builder()
+        .model("text-moderation-latest")
+        .input("hello from the other side kill me now")
+        .build();
 
-```java
-EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
-ModerationAPIResponse res = obj.getmoderation(OPENAI_KEY, request);
-```
-
-3. Print the response:
-
-```java
-System.out.println(res);
+ModerationAPIResponse res = new EasyopenaiService(new DAOImpl()).getmoderation("OPENAI_KEY",request);
 ```
 
 Click [here](#moderation-api) to jump to the code example.

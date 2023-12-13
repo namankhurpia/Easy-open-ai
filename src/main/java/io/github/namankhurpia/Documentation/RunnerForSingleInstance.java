@@ -26,6 +26,8 @@ public class RunnerForSingleInstance {
         //runVisionAPI();
         //runEasyVisionAPI();
         //runEasyVisionAPI2();
+        //runEasyMoDerationSingleInstance();
+        runEasyChatCompletionSingleInstance();
     }
 
     public static void runEasyVisionAPI()throws IOException
@@ -128,7 +130,28 @@ public class RunnerForSingleInstance {
         System.out.println("response is"+ res);
 
 
+
+
     }
+
+
+    public static void runEasyMoDerationSingleInstance() throws IOException {
+        /**
+         * Moderation API single
+         */
+        ArrayList<String> keys = readKeys();
+
+        ModerationAPIRequest request = ModerationAPIRequest.builder()
+                .model("text-moderation-latest")
+                .input("hello from the other side kill me now")
+                .build();
+
+        ModerationAPIResponse res = new EasyopenaiService(new DAOImpl()).getmoderation(keys.get(0),request);
+        System.out.println("response is"+ res);
+
+
+    }
+
 
     public static void runChatCompletionSingleInstance() throws IOException{
         /**
@@ -148,6 +171,30 @@ public class RunnerForSingleInstance {
         request.setModel("gpt-3.5-turbo");
         request.setMessages(messages); //old conversations as well
         ChatCompletionResponse res = obj.chatCompletion(keys.get(0),request);
+
+    }
+
+    public static void runEasyChatCompletionSingleInstance() throws IOException{
+        /**
+         * Chat Completion API single
+         */
+        ArrayList<String> keys = readKeys();
+
+        Message message = Message.builder()
+                .role("user")
+                .content("what is the capital of Cambodia?")
+                .build();
+
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
+
+        ChatCompletionRequest request = ChatCompletionRequest.builder()
+                .model("gpt-3.5-turbo")
+                .messages(messages)
+                .build();
+
+        ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompletion(keys.get(0),request);
+        System.out.println(response);
 
     }
 

@@ -1,12 +1,14 @@
 package io.github.namankhurpia.Pojo.Moderations;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 /**
  * This class is used to send request to OpenAI's moderation API
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class ModerationAPIRequest {
 
@@ -26,6 +28,5 @@ public class ModerationAPIRequest {
     @SerializedName("model")
     public String model;
 
-    public ModerationAPIRequest() {
-    }
+
 }
