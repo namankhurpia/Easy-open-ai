@@ -1,15 +1,13 @@
 package io.github.namankhurpia.Documentation;
 
 import io.github.namankhurpia.DAO.AsyncDAOImpl;
-import io.github.namankhurpia.DAO.DAOImpl;
+import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
-import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Vision.*;
 import io.github.namankhurpia.Service.EasyopenaiAsyncService;
-import io.github.namankhurpia.Service.EasyopenaiService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
-
-import static io.github.namankhurpia.Interfaces.EndPoints.OPENAI_KEY;
 
 public class RunnerForAsync {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
@@ -40,12 +36,12 @@ public class RunnerForAsync {
         ArrayList<String> keys = readKeys();
         EasyopenaiAsyncService easyopenaiAsyncService_chat = new EasyopenaiAsyncService(new AsyncDAOImpl());
 
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setRole("user");
-        chatMessage.setContent("what is the capital of combodia?");
+        Message message = new Message();
+        message.setRole("user");
+        message.setContent("what is the capital of combodia?");
 
-        List<ChatMessage> messages = new ArrayList<>();
-        messages.add(chatMessage);
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
 
         ChatCompletionRequest request_chat = new ChatCompletionRequest();
         request_chat.setModel("gpt-3.5-turbo");

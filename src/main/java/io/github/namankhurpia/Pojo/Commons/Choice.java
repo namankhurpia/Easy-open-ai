@@ -2,7 +2,7 @@ package io.github.namankhurpia.Pojo.Commons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
-import io.github.namankhurpia.Pojo.ChatCompletion.Message;
+import io.github.namankhurpia.Pojo.ChatCompletion.SystemMessage;
 import io.github.namankhurpia.Pojo.Vision.FinishDetails;
 import lombok.Data;
 
@@ -30,7 +30,7 @@ public class Choice {
 
     @SerializedName("message")
     @JsonProperty("message")
-    public Message message;
+    public SystemMessage systemMessage;
 
     @SerializedName("finish_reason")
     @JsonProperty("finish_reason")

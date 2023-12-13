@@ -1,9 +1,9 @@
 package io.github.namankhurpia.Documentation;
 
 import io.github.namankhurpia.DAO.DAOImpl;
+import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
-import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
@@ -137,12 +137,12 @@ public class RunnerForSingleInstance {
         ArrayList<String> keys = readKeys();
         EasyopenaiService obj = new EasyopenaiService(new DAOImpl());
 
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setRole("user");
-        chatMessage.setContent("what is the capital of combodia?");
+        Message message = new Message();
+        message.setRole("user");
+        message.setContent("what is the capital of combodia?");
 
-        List<ChatMessage> messages = new ArrayList<>();
-        messages.add(chatMessage);
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
 
         ChatCompletionRequest request = new ChatCompletionRequest();
         request.setModel("gpt-3.5-turbo");

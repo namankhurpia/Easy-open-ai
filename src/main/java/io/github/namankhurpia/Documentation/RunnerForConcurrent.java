@@ -1,8 +1,7 @@
 package io.github.namankhurpia.Documentation;
 
-import io.github.namankhurpia.DAO.AsyncDAOImpl;
+import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
-import io.github.namankhurpia.Pojo.ChatCompletion.ChatMessage;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.MyModels.ChatCompletionRequestList;
 import io.github.namankhurpia.Pojo.MyModels.ChatCompletionResponseList;
@@ -69,44 +68,44 @@ public class RunnerForConcurrent {
 
         ChatCompletionRequest requestchat = new ChatCompletionRequest();
         requestchat.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setRole("user");
-        chatMessage.setContent("what is the capital of India?");
-        List<ChatMessage> messages = new ArrayList<>();
-        messages.add(chatMessage);
+        Message message = new Message();
+        message.setRole("user");
+        message.setContent("what is the capital of India?");
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
         requestchat.setMessages(messages);
         list.add(requestchat);
 
 
         ChatCompletionRequest requestchat2 = new ChatCompletionRequest();
         requestchat2.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage2 = new ChatMessage();
-        chatMessage2.setRole("user");
-        chatMessage2.setContent("what is the capital of combodia?");
-        List<ChatMessage> messages2 = new ArrayList<>();
-        messages2.add(chatMessage2);
+        Message message2 = new Message();
+        message2.setRole("user");
+        message2.setContent("what is the capital of combodia?");
+        List<Message> messages2 = new ArrayList<>();
+        messages2.add(message2);
         requestchat2.setMessages(messages2);
         list.add(requestchat2);
 
 
         ChatCompletionRequest requestchat3 = new ChatCompletionRequest();
         requestchat3.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage3 = new ChatMessage();
-        chatMessage3.setRole("user");
-        chatMessage3.setContent("what is the capital of new zealand?");
-        List<ChatMessage> messages3 = new ArrayList<>();
-        messages3.add(chatMessage3);
+        Message message3 = new Message();
+        message3.setRole("user");
+        message3.setContent("what is the capital of new zealand?");
+        List<Message> messages3 = new ArrayList<>();
+        messages3.add(message3);
         requestchat3.setMessages(messages3);
         list.add(requestchat3);
 
 
         ChatCompletionRequest requestchat4 = new ChatCompletionRequest();
         requestchat4.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage4 = new ChatMessage();
-        chatMessage4.setRole("user");
-        chatMessage4.setContent("what is the capital of hawaii? and what is 2+2?");
-        List<ChatMessage> messages4 = new ArrayList<>();
-        messages4.add(chatMessage4);
+        Message message4 = new Message();
+        message4.setRole("user");
+        message4.setContent("what is the capital of hawaii? and what is 2+2?");
+        List<Message> messages4 = new ArrayList<>();
+        messages4.add(message4);
         requestchat4.setMessages(messages4);
         list.add(requestchat4);
 
@@ -125,44 +124,44 @@ public class RunnerForConcurrent {
 
         ChatCompletionRequest requestchat = new ChatCompletionRequest();
         requestchat.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setRole("user");
-        chatMessage.setContent("what is the capital of India?");
-        List<ChatMessage> messages = new ArrayList<>();
-        messages.add(chatMessage);
+        Message message = new Message();
+        message.setRole("user");
+        message.setContent("what is the capital of India?");
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
         requestchat.setMessages(messages);
         list.add(requestchat);
 
 
         ChatCompletionRequest requestchat2 = new ChatCompletionRequest();
         requestchat2.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage2 = new ChatMessage();
-        chatMessage2.setRole("user");
-        chatMessage2.setContent("what is the capital of combodia?");
-        List<ChatMessage> messages2 = new ArrayList<>();
-        messages2.add(chatMessage2);
+        Message message2 = new Message();
+        message2.setRole("user");
+        message2.setContent("what is the capital of combodia?");
+        List<Message> messages2 = new ArrayList<>();
+        messages2.add(message2);
         requestchat2.setMessages(messages2);
         list.add(requestchat2);
 
 
         ChatCompletionRequest requestchat3 = new ChatCompletionRequest();
         requestchat3.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage3 = new ChatMessage();
-        chatMessage3.setRole("user");
-        chatMessage3.setContent("what is the capital of new zealand?");
-        List<ChatMessage> messages3 = new ArrayList<>();
-        messages3.add(chatMessage3);
+        Message message3 = new Message();
+        message3.setRole("user");
+        message3.setContent("what is the capital of new zealand?");
+        List<Message> messages3 = new ArrayList<>();
+        messages3.add(message3);
         requestchat3.setMessages(messages3);
         list.add(requestchat3);
 
 
         ChatCompletionRequest requestchat4 = new ChatCompletionRequest();
         requestchat4.setModel("gpt-3.5-turbo");
-        ChatMessage chatMessage4 = new ChatMessage();
-        chatMessage4.setRole("user");
-        chatMessage4.setContent("what is the capital of hawaii? and what is 2+2?");
-        List<ChatMessage> messages4 = new ArrayList<>();
-        messages4.add(chatMessage4);
+        Message message4 = new Message();
+        message4.setRole("user");
+        message4.setContent("what is the capital of hawaii? and what is 2+2?");
+        List<Message> messages4 = new ArrayList<>();
+        messages4.add(message4);
         requestchat4.setMessages(messages4);
         list.add(requestchat4);
 
