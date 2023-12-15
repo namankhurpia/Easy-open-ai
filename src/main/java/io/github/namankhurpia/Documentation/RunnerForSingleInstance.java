@@ -7,9 +7,15 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
+import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
+import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.*;
 import io.github.namankhurpia.Service.EasyVisionService;
 import io.github.namankhurpia.Service.EasyopenaiService;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +33,10 @@ public class RunnerForSingleInstance {
         //runEasyVisionAPI();
         //runEasyVisionAPI2();
         //runEasyMoDerationSingleInstance();
-        runEasyChatCompletionSingleInstance();
+        //runEasyChatCompletionSingleInstance();
+        //TestForSpeech();
+        TestForTranscription();
+
     }
 
     public static void runEasyVisionAPI()throws IOException
@@ -195,6 +204,50 @@ public class RunnerForSingleInstance {
 
         ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompletion(keys.get(0),request);
         System.out.println(response);
+
+    }
+
+
+    public static void TestForSpeech() throws IOException {
+        /**
+         * Speech generation API single
+         */
+        ArrayList<String> keys = readKeys();
+        SpeechRequest request = SpeechRequest.builder()
+                .model("tts-1")
+                .input("The quick brown fox jumped over the lazy dog.")
+                .voice("alloy")
+                .build();
+
+        ResponseBody response = new EasyopenaiService(new DAOImpl()).createSpeech(keys.get(0),request);
+
+
+    }
+
+
+    public static void TestForTranscription() throws IOException {
+        /**
+         * Speech generation API single
+         */
+        File audioFile = new File("/Users/namankhurpia/Desktop/audio.mp3");
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData(
+                "file",
+                audioFile.getName(),
+                RequestBody.create(MediaType.parse("audio/*"), audioFile)
+        );
+
+        ArrayList<String> keys = readKeys();
+        TranscriptionRequest request = TranscriptionRequest.builder()
+                .model("whisper-1")
+                .responseFormat("text")
+                .prompt("")
+                .temperature(0)
+                .language("en")
+                .build();
+
+        ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscriptions(keys.get(0),filePart,request);
+        System.out.println(response.string());
+
 
     }
 

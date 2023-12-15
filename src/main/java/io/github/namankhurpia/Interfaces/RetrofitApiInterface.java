@@ -5,12 +5,14 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
+import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 import java.io.IOException;
 
@@ -38,5 +40,17 @@ public interface RetrofitApiInterface {
     //gpt-4-vision-preview
     @POST("/v1/chat/completions")
     Call<VisionApiResponse> visionAPI(@Header("Authorization") String accessToken, @Body VisionApiRequest request) throws IOException;
+
+    @POST("/v1/audio/speech")
+    Call<ResponseBody> createSpeech(@Header("Authorization")String accessToken, @Body SpeechRequest request) throws IOException;
+
+    @POST("/v1/audio/transcriptions")
+    @Multipart
+    Call<ResponseBody> createTranscriptions(@Header("Authorization")String accessToken, @Part MultipartBody.Part file,
+                                            @Part("model") String model,
+                                            @Part("language") String language,
+                                            @Part("prompt") String prompt,
+                                            @Part("response_format") String responseFormat,
+                                            @Part("temperature") Integer temperature) throws IOException;
 
 }
