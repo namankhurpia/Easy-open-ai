@@ -2,10 +2,16 @@ package io.github.namankhurpia.Pojo.MyModels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class EasyVisionRequest {
 

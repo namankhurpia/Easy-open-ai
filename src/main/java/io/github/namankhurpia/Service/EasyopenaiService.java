@@ -9,8 +9,12 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
+import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
+import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 
 
 import java.io.IOException;
@@ -43,6 +47,16 @@ public class EasyopenaiService implements DaoInterface {
     @Override
     public VisionApiResponse visionAPI(String accessToken, VisionApiRequest request) throws IOException {
         return dao.visionAPI(accessToken,request);
+    }
+
+    @Override
+    public ResponseBody createSpeech(String accessToken, SpeechRequest request) throws IOException {
+        return dao.createSpeech(accessToken,request);
+    }
+
+    @Override
+    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, TranscriptionRequest request) throws IOException {
+        return dao.createTranscriptions(accessToken,file,request);
     }
 
 

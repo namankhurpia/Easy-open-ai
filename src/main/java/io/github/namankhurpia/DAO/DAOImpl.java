@@ -10,8 +10,13 @@ import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
+import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
+import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
+import lombok.extern.java.Log;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.*;
@@ -28,6 +33,8 @@ public class DAOImpl implements DaoInterface {
     ChatCompletionResponse chatCompletionResponseObj;
 
     VisionApiResponse visionApiResponseObj;
+
+    ResponseBody responseBodyObj;
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
 
     RetrofitApiInterface retrofitApiInterfaceObj;
@@ -170,6 +177,64 @@ public class DAOImpl implements DaoInterface {
         }
 
         return visionApiResponseObj;
+    }
+
+    @Override
+    public ResponseBody createSpeech(String accessToken, SpeechRequest request) throws IOException{
+
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
+        LOGGER.info("making req" + accessToken + " with request "+ request.toString());
+
+        Call<ResponseBody> call =  retrofitApiInterfaceObj.createSpeech("Bearer "+accessToken, request);
+        Response<ResponseBody> response = call.execute();
+
+        if(response.isSuccessful())
+        {
+            responseBodyObj= response.body();
+            LOGGER.info("Correct response" + responseBodyObj.toString());
+        }
+        else {
+            int httpStatusCode = response.code();
+
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
+            String errorBodyString = response.errorBody().string();
+            System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
+
+        }
+
+        return responseBodyObj;
+
+    }
+
+    @Override
+    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, TranscriptionRequest request) throws IOException {
+
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
+        LOGGER.info("making req" + accessToken + " with request "+ request.toString());
+
+        Call<ResponseBody> call =  retrofitApiInterfaceObj.createTranscriptions("Bearer "+accessToken,file ,request.getModel(), request.getLanguage(), request.getPrompt(), request.getResponseFormat(), request.getTemperature());
+        Response<ResponseBody> response = call.execute();
+
+        if(response.isSuccessful())
+        {
+            responseBodyObj= response.body();
+            LOGGER.info("Correct response" + responseBodyObj.toString());
+        }
+        else {
+            int httpStatusCode = response.code();
+
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
+            String errorBodyString = response.errorBody().string();
+            System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
+
+
+        }
+
+        return responseBodyObj;
+
     }
 
 

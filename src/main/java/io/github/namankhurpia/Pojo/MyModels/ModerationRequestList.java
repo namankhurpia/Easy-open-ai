@@ -1,7 +1,10 @@
 package io.github.namankhurpia.Pojo.MyModels;
 
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +12,9 @@ import java.util.Collection;
 /**
  * contains all functionality of an arraylist
  */
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ModerationRequestList {
 
@@ -17,11 +23,6 @@ public class ModerationRequestList {
      */
 
     ArrayList<ModerationAPIRequest> requestList;
-
-    public ModerationRequestList(ArrayList<ModerationAPIRequest> requestList)
-    {
-        this.requestList = requestList;
-    }
 
     public void add(ModerationAPIRequest obj)
     {
