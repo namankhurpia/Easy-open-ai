@@ -11,11 +11,10 @@ import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
-import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
-import lombok.extern.java.Log;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -212,12 +211,11 @@ public class DAOImpl implements DaoInterface {
     }
 
     @Override
-    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, TranscriptionRequest request) throws IOException {
-
+    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, RequestBody model, RequestBody language, RequestBody prompt, RequestBody response_format, RequestBody temperature) throws IOException {
         retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
-        LOGGER.info("making req" + accessToken + " with request "+ request.toString());
+        LOGGER.info("making req" + accessToken + " with request ");
 
-        Call<ResponseBody> call =  retrofitApiInterfaceObj.createTranscriptions("Bearer "+accessToken,file ,request.getModel(), request.getLanguage(), request.getPrompt(), request.getResponseFormat(), request.getTemperature());
+        Call<ResponseBody> call =  retrofitApiInterfaceObj.createTranscriptions("Bearer "+accessToken,file ,model, language, prompt, response_format, temperature);
         Response<ResponseBody> response = call.execute();
 
         if(response.isSuccessful())
@@ -238,8 +236,10 @@ public class DAOImpl implements DaoInterface {
         }
 
         return responseBodyObj;
-
     }
+
+
+
 
 
 }
