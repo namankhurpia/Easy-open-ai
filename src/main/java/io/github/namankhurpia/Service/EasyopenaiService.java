@@ -10,10 +10,10 @@ import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
-import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 
@@ -55,9 +55,11 @@ public class EasyopenaiService implements DaoInterface {
     }
 
     @Override
-    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, TranscriptionRequest request) throws IOException {
-        return dao.createTranscriptions(accessToken,file,request);
+    public ResponseBody createTranscriptions(String accessToken, MultipartBody.Part file, RequestBody model, RequestBody language, RequestBody prompt, RequestBody response_format, RequestBody temperature) throws IOException {
+        return dao.createTranscriptions(accessToken,file,model, language, prompt, response_format, temperature);
     }
+
+
 
 
 }

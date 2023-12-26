@@ -6,10 +6,10 @@ import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
-import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiRequest;
 import io.github.namankhurpia.Pojo.Vision.VisionApiResponse;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -46,11 +46,12 @@ public interface RetrofitApiInterface {
 
     @POST("/v1/audio/transcriptions")
     @Multipart
-    Call<ResponseBody> createTranscriptions(@Header("Authorization")String accessToken, @Part MultipartBody.Part file,
-                                            @Part("model") String model,
-                                            @Part("language") String language,
-                                            @Part("prompt") String prompt,
-                                            @Part("response_format") String responseFormat,
-                                            @Part("temperature") Integer temperature) throws IOException;
+    Call<ResponseBody> createTranscriptions(@Header("Authorization")String accessToken,
+                                            @Part MultipartBody.Part file,
+                                            @Part("model") RequestBody model,
+                                            @Part("language") RequestBody language,
+                                            @Part("prompt") RequestBody prompt,
+                                            @Part("response_format") RequestBody response_format,
+                                            @Part("temperature")RequestBody temperature ) throws IOException;
 
 }

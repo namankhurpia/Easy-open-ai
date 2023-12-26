@@ -5,13 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import okhttp3.MultipartBody;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TranscriptionRequest {
+public class EasyTranscriptionRequest {
 
     String model;
 
@@ -23,6 +22,8 @@ public class TranscriptionRequest {
     String responseFormat;
 
     Integer temperature;
+
+    String filepath;
 
 
 

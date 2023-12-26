@@ -7,9 +7,10 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
+import io.github.namankhurpia.Pojo.Speech.EasyTranscriptionRequest;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
-import io.github.namankhurpia.Pojo.Speech.TranscriptionRequest;
 import io.github.namankhurpia.Pojo.Vision.*;
+import io.github.namankhurpia.Service.EasyTranscriptionService;
 import io.github.namankhurpia.Service.EasyVisionService;
 import io.github.namankhurpia.Service.EasyopenaiService;
 import okhttp3.MediaType;
@@ -35,7 +36,8 @@ public class RunnerForSingleInstance {
         //runEasyMoDerationSingleInstance();
         //runEasyChatCompletionSingleInstance();
         //TestForSpeech();
-        TestForTranscription();
+        //TestForTranscription();
+        TestForEasyTranscription();
 
     }
 
@@ -237,18 +239,27 @@ public class RunnerForSingleInstance {
         );
 
         ArrayList<String> keys = readKeys();
-        TranscriptionRequest request = TranscriptionRequest.builder()
-                .model("whisper-1")
-                .responseFormat("text")
-                .prompt("")
-                .temperature(0)
-                .language("en")
-                .build();
+        RequestBody model = RequestBody.create(MediaType.parse("text/plain"), "whisper-1");
+        RequestBody language = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody prompt = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody response_format = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody temperature = RequestBody.create(MediaType.parse("text/plain"), "");
 
-        ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscriptions(keys.get(0),filePart,request);
+        ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscriptions(keys.get(0), filePart,model, language,prompt,response_format,temperature);
         System.out.println(response.string());
 
 
+    }
+
+    public static void TestForEasyTranscription() throws IOException {
+        ArrayList<String> keys = readKeys();
+
+        EasyTranscriptionRequest request  = new EasyTranscriptionRequest();
+        request.setFilepath("/Users/namankhurpia/Desktop/audio.mp3");
+        request.setModel("whisper-1");
+
+        ResponseBody response = new EasyTranscriptionService().EasyTranscription(keys.get(0), request);
+        System.out.println(response);
     }
 
 
