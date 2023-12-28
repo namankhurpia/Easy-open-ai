@@ -24,11 +24,45 @@ public class EasyTranscriptionService {
         {
             throw new MalformedRequestException("File path name empty", new Throwable("File path  name empty"));
         }
-        RequestBody model = RequestBody.create(MediaType.parse("text/plain"), request.getModel());
-        RequestBody language = RequestBody.create(MediaType.parse("text/plain"), request.getLanguage());
-        RequestBody prompt = RequestBody.create(MediaType.parse("text/plain"), request.getPrompt());
-        RequestBody response_format = RequestBody.create(MediaType.parse("text/plain"), request.getResponseFormat());
-        RequestBody temperature = RequestBody.create(MediaType.parse("text/plain"), request.getTemperature().toString());
+
+
+        RequestBody model,language,prompt,response_format,temperature;
+
+         model = RequestBody.create(MediaType.parse("text/plain"), request.getModel());
+
+        if(request.getLanguage()==null || request.getLanguage().isEmpty())
+        {
+             language = RequestBody.create(MediaType.parse("text/plain"), "");
+        }
+        else {
+             language = RequestBody.create(MediaType.parse("text/plain"), request.getLanguage());
+        }
+
+
+        if(request.getPrompt()==null || request.getPrompt().isEmpty())
+        {
+             prompt = RequestBody.create(MediaType.parse("text/plain"), "");
+        }
+        else {
+             prompt = RequestBody.create(MediaType.parse("text/plain"), request.getPrompt());
+        }
+
+        if(request.getResponseFormat()==null || request.getResponseFormat().isEmpty())
+        {
+             response_format = RequestBody.create(MediaType.parse("text/plain"), "");
+        }
+        else {
+             response_format = RequestBody.create(MediaType.parse("text/plain"), request.getResponseFormat());
+        }
+
+        if(request.getTemperature()==null || request.getTemperature()==0)
+        {
+             temperature = RequestBody.create(MediaType.parse("text/plain"), "");
+        }
+        else {
+             temperature = RequestBody.create(MediaType.parse("text/plain"), request.getTemperature().toString());
+        }
+
 
         File audioFile = new File(request.getFilepath());
         MultipartBody.Part filePart = MultipartBody.Part.createFormData(
