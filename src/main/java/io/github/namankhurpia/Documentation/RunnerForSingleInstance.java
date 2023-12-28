@@ -259,7 +259,7 @@ public class RunnerForSingleInstance {
         request.setModel("whisper-1");
 
         ResponseBody response = new EasyTranscriptionService().EasyTranscription(keys.get(0), request);
-        System.out.println(response);
+        System.out.println(response.string());
     }
 
 
