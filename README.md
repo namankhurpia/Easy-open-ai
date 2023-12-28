@@ -202,7 +202,7 @@ ResponseBody response = new EasyTranscriptionService().EasyTranscription("OPENAI
 Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 
-## Transcription API (original - provided by OpenAI)
+## Transcription API
 
 ```java
 File audioFile = new File("/Users/namankhurpia/Desktop/audio.mp3");
