@@ -3,7 +3,7 @@ This repo contains the community library for OpenAI's API in java, the easiest w
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai)
 
-[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.5-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
+[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.6-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
 
 # Usage
 
@@ -21,7 +21,7 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 - [Moderation API](#moderation-api)
 - [Easy Vision API](#easy-vision-api)  or  [Vision API](#vision-api) (original provided by OpenAI)
 - [Speech API](#speech-api)
-
+- [Easy Transcription API](#easy-transcription-api) or [Transcription API](#transcription-api) (original provided by OpenAI)
 ### Asynchronous
 
 - [Async Chat Completion API](#async-chat-completion-api)
@@ -184,6 +184,43 @@ SpeechRequest request = SpeechRequest.builder()
 ResponseBody response = new EasyopenaiService(new DAOImpl()).createSpeech("OPENAI_KEY",request);
 
 ```
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
+
+
+## Easy Transcription API
+
+Transcription API can be used like this, feel free to tweak-
+
+```java
+EasyTranscriptionRequest request  = new EasyTranscriptionRequest();
+request.setFilepath("PATH-TO-AUDIO-FILE");
+request.setModel("whisper-1");
+
+ResponseBody response = new EasyTranscriptionService().EasyTranscription("OPENAI_KEY", request);
+```
+
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
+
+
+## Transcription API (original - provided by OpenAI)
+
+```java
+File audioFile = new File("/Users/namankhurpia/Desktop/audio.mp3");
+MultipartBody.Part filePart = MultipartBody.Part.createFormData(
+       "file",
+       audioFile.getName(),
+       RequestBody.create(MediaType.parse("audio/*"), audioFile)
+);
+
+RequestBody model = RequestBody.create(MediaType.parse("text/plain"), "whisper-1");
+RequestBody language = RequestBody.create(MediaType.parse("text/plain"), "");
+RequestBody prompt = RequestBody.create(MediaType.parse("text/plain"), "");
+RequestBody response_format = RequestBody.create(MediaType.parse("text/plain"), "");
+RequestBody temperature = RequestBody.create(MediaType.parse("text/plain"), "");
+
+ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscriptions("OPENAI_KEY", filePart,model, language,prompt,response_format,temperature);
+```
+
 Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 
