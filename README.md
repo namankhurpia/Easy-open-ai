@@ -3,7 +3,7 @@ This repository contains the community-maintained library for OpenAI's API in ja
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.namankhurpia/easyopenai)
 
-[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.6-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
+[![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.7-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
 
 # Usage
 
