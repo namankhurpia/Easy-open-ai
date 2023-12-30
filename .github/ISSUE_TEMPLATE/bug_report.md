@@ -1,64 +1,36 @@
+---
 name: Bug report
-description: Report an issue or bug with this library
-labels: ['bug']
-body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-  - type: checkboxes
-    id: non_api
-    attributes:
-      label: Confirm this is a Node library issue and not an underlying OpenAI API issue
-      description: Issues with the underlying OpenAI API should be reported on our [Developer Community](https://community.openai.com/c/api/7)
-      options:
-        - label: This is an issue with the Node library
-          required: true
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: Describe the bug
-      description: A clear and concise description of what the bug is, and any additional context.
-      placeholder: Tell us what you see!
-    validations:
-      required: true
-  - type: textarea
-    id: repro-steps
-    attributes:
-      label: To Reproduce
-      description: Steps to reproduce the behavior.
-      placeholder: |
-        1. Fetch a '...'
-        2. Update the '....'
-        3. See error
-    validations:
-      required: true
-  - type: textarea
-    id: code-snippets
-    attributes:
-      label: Code snippets
-      description: If applicable, add code snippets to help explain your problem.
-      render: JavaScript
-    validations:
-      required: false
-  - type: input
-    id: os
-    attributes:
-      label: OS
-      placeholder: macOS
-    validations:
-      required: true
-  - type: input
-    id: language-version
-    attributes:
-      label: Node version
-      placeholder: Node v16.14.2
-    validations:
-      required: true
-  - type: input
-    id: lib-version
-    attributes:
-      label: Library version
-      placeholder: openai v3.0.1
-    validations:
-      required: true
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Java Version (please complete the following information):**
+ - which java version are you using?: [e.g.JDK 18]
+
+
+**Additional context**
+Add any other context about the problem here.
