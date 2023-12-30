@@ -6,6 +6,7 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Image.ImageRequest;
 import io.github.namankhurpia.Pojo.Image.ImageResponse;
+import io.github.namankhurpia.Pojo.Models.ModelResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
@@ -40,9 +41,12 @@ public class RunnerForSingleInstance {
         //TestForSpeech();
         //TestForTranscription();
         //TestForEasyTranscription();
-        TestForImageGeneration();
+        //TestForImageGeneration();
+        GetAllModels();
 
     }
+
+
 
     public static void runEasyVisionAPI()throws IOException
     {
@@ -275,6 +279,13 @@ public class RunnerForSingleInstance {
                 .build();
 
         ImageResponse response = new EasyopenaiService(new DAOImpl()).createImage(keys.get(0),imageRequest);
+        System.out.println(response);
+
+    }
+
+    private static void GetAllModels() throws IOException {
+        ArrayList<String> keys = readKeys();
+        ModelResponse response = new EasyopenaiService(new DAOImpl()).getAllModels(keys.get(0));
         System.out.println(response);
 
     }

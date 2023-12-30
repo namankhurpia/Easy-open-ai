@@ -6,6 +6,7 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Image.ImageRequest;
 import io.github.namankhurpia.Pojo.Image.ImageResponse;
+import io.github.namankhurpia.Pojo.Models.ModelResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
@@ -41,5 +42,6 @@ public interface DaoInterface {
 
     ImageResponse createImage(@Header("Authorization")String accessToken, ImageRequest imageRequest) throws IOException;
 
+    ModelResponse getAllModels(@Header("Authorization")String accessToken)throws IOException;
 
 }
