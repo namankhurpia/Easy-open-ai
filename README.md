@@ -22,7 +22,7 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 - [Easy Vision API](#easy-vision-api)  or  [Vision API](#vision-api) (original provided by OpenAI)
 - [Speech API](#speech-api)
 - [Easy Transcription API](#easy-transcription-api) or [Transcription API](#transcription-api) (original provided by OpenAI)
-- [Image generation API / DALL-E](#image-generation-api-/-DALL-E) 
+- [Image generation API](#image-generation-api)  also called as DALL-E API
 
 ### Asynchronous
 
@@ -231,7 +231,7 @@ ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscription
 Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 
-## Image Generation API / DALL-E
+## Image Generation API
 
 Image Generation API can be used like this, feel free to tweak-
 
