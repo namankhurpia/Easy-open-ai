@@ -4,6 +4,8 @@ import io.github.namankhurpia.DAO.DAOImpl;
 import io.github.namankhurpia.Pojo.ChatCompletion.Message;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
+import io.github.namankhurpia.Pojo.Image.ImageRequest;
+import io.github.namankhurpia.Pojo.Image.ImageResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.MyModels.EasyVisionRequest;
@@ -37,7 +39,8 @@ public class RunnerForSingleInstance {
         //runEasyChatCompletionSingleInstance();
         //TestForSpeech();
         //TestForTranscription();
-        TestForEasyTranscription();
+        //TestForEasyTranscription();
+        TestForImageGeneration();
 
     }
 
@@ -254,12 +257,26 @@ public class RunnerForSingleInstance {
     public static void TestForEasyTranscription() throws IOException {
         ArrayList<String> keys = readKeys();
 
-        EasyTranscriptionRequest request  = new EasyTranscriptionRequest();
-        request.setFilepath("/Users/namankhurpia/Desktop/audio.mp3");
-        request.setModel("whisper-1");
+        EasyTranscriptionRequest request  =  EasyTranscriptionRequest.builder()
+                .filepath("/Users/namankhurpia/Desktop/audio.mp3")
+                .model("whisper-1")
+                .build();
 
         ResponseBody response = new EasyTranscriptionService().EasyTranscription(keys.get(0), request);
         System.out.println(response.string());
+    }
+
+    public static  void TestForImageGeneration()throws IOException{
+        ArrayList<String> keys = readKeys();
+
+        ImageRequest imageRequest  = ImageRequest.builder()
+                .prompt("Generate a cute dog playing with frizbee")
+                .model("dall-e-2")
+                .build();
+
+        ImageResponse response = new EasyopenaiService(new DAOImpl()).createImage(keys.get(0),imageRequest);
+        System.out.println(response);
+
     }
 
 

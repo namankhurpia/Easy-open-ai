@@ -7,6 +7,8 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
+import io.github.namankhurpia.Pojo.Image.ImageRequest;
+import io.github.namankhurpia.Pojo.Image.ImageResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
@@ -38,6 +40,8 @@ public class DAOImpl implements DaoInterface {
     VisionApiResponse visionApiResponseObj;
 
     ResponseBody responseBodyObj;
+
+    ImageResponse imageResponse;
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
 
     RetrofitApiInterface retrofitApiInterfaceObj;
@@ -238,8 +242,33 @@ public class DAOImpl implements DaoInterface {
         return responseBodyObj;
     }
 
+    @Override
+    public ImageResponse createImage(String accessToken, ImageRequest imageRequest) throws IOException {
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
+        LOGGER.info("making req" + accessToken + " with request "+ imageRequest);
+
+        Call<ImageResponse> call =  retrofitApiInterfaceObj.createImage("Bearer "+ accessToken, imageRequest);
+        Response<ImageResponse> response = call.execute();
+
+        if(response.isSuccessful())
+        {
+            imageResponse= response.body();
+            LOGGER.info("Correct response" + imageResponse.toString());
+        }
+        else {
+            int httpStatusCode = response.code();
+
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
+            String errorBodyString = response.errorBody().string();
+            System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
 
 
+        }
+
+        return imageResponse;
+    }
 
 
 }
