@@ -5,6 +5,7 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Image.ImageRequest;
 import io.github.namankhurpia.Pojo.Image.ImageResponse;
+import io.github.namankhurpia.Pojo.Models.ModelResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
@@ -59,8 +60,15 @@ public interface RetrofitApiInterface {
     @POST("/v1/images/generations")
     Call<ImageResponse> createImage(@Header("Authorization")String accessToken, @Body ImageRequest imageRequest) throws IOException;
 
-    @POST(".v1/images/edits")
+    @POST("/v1/images/edits")
     @Multipart
-    Call<ResponseBody> createImageEdit(@Header("Authorization")String accessToken, @Part MultipartBody.Part image, @Part("prompt") RequestBody prompt );
+    Call<ResponseBody> createImageEdit(@Header("Authorization")String accessToken, @Part MultipartBody.Part image, @Part("prompt") RequestBody prompt )throws IOException;
+
+    @POST("/v1/images/variations")
+    @Multipart
+    Call<ResponseBody> createImageVariation (@Header("Authorization")String accessToken, @Part MultipartBody.Part image, @Part("prompt") RequestBody prompt )throws IOException;
+
+    @GET("/v1/models")
+    Call<ModelResponse> getAllModels(@Header("Authorization")String accessToken)throws IOException;
 
 }

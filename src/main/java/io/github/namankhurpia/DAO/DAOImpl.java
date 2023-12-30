@@ -9,6 +9,7 @@ import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
 import io.github.namankhurpia.Pojo.Image.ImageRequest;
 import io.github.namankhurpia.Pojo.Image.ImageResponse;
+import io.github.namankhurpia.Pojo.Models.ModelResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 
@@ -42,6 +43,9 @@ public class DAOImpl implements DaoInterface {
     ResponseBody responseBodyObj;
 
     ImageResponse imageResponse;
+
+    ModelResponse modelResponse;
+
     private static Logger LOGGER = LoggerFactory.getLogger(DAOImpl.class);
 
     RetrofitApiInterface retrofitApiInterfaceObj;
@@ -268,6 +272,34 @@ public class DAOImpl implements DaoInterface {
         }
 
         return imageResponse;
+    }
+
+    @Override
+    public ModelResponse getAllModels(String accessToken) throws IOException {
+        retrofitApiInterfaceObj = RetrofitAPIClient.getClient().create(RetrofitApiInterface.class);
+        LOGGER.info("making req" + accessToken );
+
+        Call<ModelResponse> call =  retrofitApiInterfaceObj.getAllModels("Bearer "+ accessToken);
+        Response<ModelResponse> response = call.execute();
+
+        if(response.isSuccessful())
+        {
+            modelResponse= response.body();
+            LOGGER.info("Correct response" + modelResponse.toString());
+        }
+        else {
+            int httpStatusCode = response.code();
+
+            String errorBody = response.errorBody() != null ? String.valueOf(response.errorBody()) : "Empty error body";
+            String errorBodyString = response.errorBody().string();
+            System.out.println("Unsuccessful response with HTTP status code " + httpStatusCode + " and error body: " + errorBodyString);
+
+            throw new MalformedRequestException(errorBody, new Throwable(errorBody));
+
+
+        }
+
+        return modelResponse;
     }
 
 
