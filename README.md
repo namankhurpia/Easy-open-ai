@@ -22,6 +22,8 @@ This Java library provides a convenient way to interact with OpenAI's API for bo
 - [Easy Vision API](#easy-vision-api)  or  [Vision API](#vision-api) (original provided by OpenAI)
 - [Speech API](#speech-api)
 - [Easy Transcription API](#easy-transcription-api) or [Transcription API](#transcription-api) (original provided by OpenAI)
+- [Image generation API / DALL-E](#image-generation-api-/-DALL-E) 
+
 ### Asynchronous
 
 - [Async Chat Completion API](#async-chat-completion-api)
@@ -192,9 +194,10 @@ Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/jav
 Transcription API can be used like this, feel free to tweak-
 
 ```java
-EasyTranscriptionRequest request  = new EasyTranscriptionRequest();
-request.setFilepath("PATH-TO-AUDIO-FILE");
-request.setModel("whisper-1");
+EasyTranscriptionRequest request  =  EasyTranscriptionRequest.builder()
+      .filepath("/Users/namankhurpia/Desktop/audio.mp3")
+      .model("whisper-1")
+      .build();
 
 ResponseBody response = new EasyTranscriptionService().EasyTranscription("OPENAI_KEY", request);
 ```
@@ -203,6 +206,10 @@ Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/jav
 
 
 ## Transcription API
+
+### Original Transcription API by OpenAI
+Transcription API can be used like this, feel free to tweak-
+
 
 ```java
 File audioFile = new File("/Users/namankhurpia/Desktop/audio.mp3");
@@ -221,6 +228,21 @@ RequestBody temperature = RequestBody.create(MediaType.parse("text/plain"), "");
 ResponseBody response = new EasyopenaiService(new DAOImpl()).createTranscriptions("OPENAI_KEY", filePart,model, language,prompt,response_format,temperature);
 ```
 
+Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
+
+
+## Image Generation API / DALL-E
+
+Image Generation API can be used like this, feel free to tweak-
+
+```java
+ImageRequest imageRequest  = ImageRequest.builder()
+       .prompt("Generate a cute dog playing with frizbee")
+       .model("dall-e-2")
+       .build();
+
+ImageResponse response = new EasyopenaiService(new DAOImpl()).createImage("OPENAI_KEY",imageRequest);
+```
 Click [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java) to jump to the code example.
 
 

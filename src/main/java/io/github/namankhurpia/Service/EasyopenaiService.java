@@ -7,6 +7,8 @@ import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionRequest;
 import io.github.namankhurpia.Pojo.ChatCompletion.ChatCompletionResponse;
 import io.github.namankhurpia.Pojo.Completion.CompletionRequest;
 import io.github.namankhurpia.Pojo.Completion.CompletionResponse;
+import io.github.namankhurpia.Pojo.Image.ImageRequest;
+import io.github.namankhurpia.Pojo.Image.ImageResponse;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIRequest;
 import io.github.namankhurpia.Pojo.Moderations.ModerationAPIResponse;
 import io.github.namankhurpia.Pojo.Speech.SpeechRequest;
@@ -59,7 +61,10 @@ public class EasyopenaiService implements DaoInterface {
         return dao.createTranscriptions(accessToken,file,model, language, prompt, response_format, temperature);
     }
 
-
+    @Override
+    public ImageResponse createImage(String accessToken, ImageRequest imageRequest) throws IOException {
+        return dao.createImage(accessToken,imageRequest);
+    }
 
 
 }
