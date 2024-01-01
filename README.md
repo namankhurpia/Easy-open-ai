@@ -5,8 +5,6 @@ This repository contains the community-maintained library for OpenAI's API in ja
 
 [![Your Custom Badge](https://img.shields.io/badge/Easyopenai-1.0.7-brightgreen)](https://central.sonatype.com/artifact/io.github.namankhurpia/easyopenai)
 
-# Usage
-
 ## Overview
 
 This Java library (community-maintained Library) provides a convenient way to interact with OpenAI's API for both Moderation and Chat Completion. The library encapsulates the necessary details, making it easy to integrate OpenAI's powerful models into your Java applications. This project is not maintained by OPENAI, this is an unofficial library.
@@ -36,12 +34,14 @@ This Java library (community-maintained Library) provides a convenient way to in
 
 
 # Contributing Guidelines
+Please refer [CONTRIBUTING.md](https://github.com/namankhurpia/Easy-open-ai/blob/main/CONTRIBUTING.md)
 
 
 # Running guidelines
 All "OPENAI_KEYS" must be read through the readKeys() function defined [here](https://github.com/namankhurpia/Easy-open-ai/blob/main/src/main/java/io/github/namankhurpia/Documentation/RunnerForSingleInstance.java), this function allows you to read multiple keys at the same time, and for multithreaded task it is adviced to use multiple keys to avoid rate limiting. To run this function you need to have keys.txt in your project root folder (feel free to edit).
 
 
+# Usage - syntax 
 
 ## Chat Completion API
 
