@@ -32,6 +32,10 @@ This Java library (community-maintained Library) provides a convenient way to in
 - [Multithreaded Async Chat Completion API](#multithreaded-async-chat-completion-api)
 - [Multithreaded Async Moderation API](#multithreaded-async-moderation-api)
 
+### Multi-Asynchronous-MultiKey 
+
+- [EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI](#EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI)
+
 
 # Contributing Guidelines
 Please refer [CONTRIBUTING.md](https://github.com/namankhurpia/Easy-open-ai/blob/main/CONTRIBUTING.md)
@@ -62,7 +66,7 @@ ChatCompletionRequest request = ChatCompletionRequest.builder()
        .messages(messages)
        .build();
 
-ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompletion(keys.get(0),request);
+ChatCompletionResponse response = new EasyopenaiService(new DAOImpl()).chatCompletion("OPENAI_KEY",request);
 
 ```
 
@@ -389,6 +393,74 @@ For multi-threading and concurrent calls with the Moderation API, follow these s
 
 Click [here](#multi-async-moderation-api) to jump to the code example.
 
+## EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI
+
+This allows you to make multiple Chat completion calls with multiple keys. All API calls are executed parallely but the response is actively collected and sent back when all the threads are finished.
+
+CompletableFuture class has been used for implementation. Kindly refer EasyopenaiConcurrentService.java file to see the source. 
+
+Example Usgage-
+
+```java
+public static void CallMultipleChatCompletionAPI_multikey_Test()
+{
+     //this function read multiple keys from keys.txt file 
+     ArrayList<String> keyList = readKeys();
+     
+     EasyopenaiConcurrentService concurrentCalls = new EasyopenaiConcurrentService();
+   
+     ChatCompletionRequestList list = new ChatCompletionRequestList(new ArrayList<ChatCompletionRequest>());
+   
+     //First thread for 
+     ChatCompletionRequest requestchat = new ChatCompletionRequest();
+     requestchat.setModel("gpt-3.5-turbo");
+     Message message = new Message();
+     message.setRole("user");
+     message.setContent("what is the capital of India?");
+     List<Message> messages = new ArrayList<>();
+     messages.add(message);
+     requestchat.setMessages(messages);
+     list.add(requestchat);
+   
+   
+     ChatCompletionRequest requestchat2 = new ChatCompletionRequest();
+     requestchat2.setModel("gpt-3.5-turbo");
+     Message message2 = new Message();
+     message2.setRole("user");
+     message2.setContent("what is the capital of combodia?");
+     List<Message> messages2 = new ArrayList<>();
+     messages2.add(message2);
+     requestchat2.setMessages(messages2);
+     list.add(requestchat2);
+   
+   
+     ChatCompletionRequest requestchat3 = new ChatCompletionRequest();
+     requestchat3.setModel("gpt-3.5-turbo");
+     Message message3 = new Message();
+     message3.setRole("user");
+     message3.setContent("what is the capital of new zealand?");
+     List<Message> messages3 = new ArrayList<>();
+     messages3.add(message3);
+     requestchat3.setMessages(messages3);
+     list.add(requestchat3);
+   
+   
+     ChatCompletionRequest requestchat4 = new ChatCompletionRequest();
+     requestchat4.setModel("gpt-3.5-turbo");
+     Message message4 = new Message();
+     message4.setRole("user");
+     message4.setContent("what is the capital of hawaii? and what is 2+2?");
+     List<Message> messages4 = new ArrayList<>();
+     messages4.add(message4);
+     requestchat4.setMessages(messages4);
+     list.add(requestchat4);
+   
+   
+   
+     ChatCompletionResponseList responseList = concurrentCalls.CallMultipleChatCompletionAPI(keyList, list);
+     System.out.println("response is"+responseList);
+}
+```
 
 # Dependencies
 
