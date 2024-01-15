@@ -35,7 +35,7 @@ This Java library (community-maintained Library) provides a convenient way to in
 
 ### Multi-Asynchronous-MultiKey 
 
-- [EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI](#EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI)
+- [EMMC EasyOpenAI Multithreaded MultiKey ChatCompletionAPI](#EMMC-EasyOpenAI-Multithreaded-MultiKey-ChatCompletionAPI)
 
 
 # Contributing Guidelines
