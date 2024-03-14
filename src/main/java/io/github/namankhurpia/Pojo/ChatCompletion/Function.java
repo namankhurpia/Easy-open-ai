@@ -30,7 +30,7 @@ public class Function {
      * To describe a function that accepts no parameters, provide the value {"type": "object", "properties": {}}
      */
     @JsonProperty("parameters")
-    String parameters;
+    Object parameters;
 
 
 }
