@@ -1,6 +1,7 @@
 package io.github.namankhurpia.Pojo.ChatCompletion;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -115,6 +116,8 @@ public class ChatCompletionRequest {
      * with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br>
      * We generally recommend altering this or temperature but not both.
      */
+
+    @SerializedName("top_p")
     @JsonProperty("top_p")
     Double topP;
 

@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 public class RunnerForAsync {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
-
         RunnerForAsync_chatCompletion();
         RunnerForAsync_ModerationAPI();
         RunnerForAsync_VisionAPI();
@@ -47,6 +46,7 @@ public class RunnerForAsync {
         request_chat.setModel("gpt-3.5-turbo");
         request_chat.setMessages(messages); //old conversations as well
         ChatCompletionResponse response_chat = easyopenaiAsyncService_chat.getAsyncChatCompletion(keys.get(0),request_chat);
+        System.out.println(response_chat);
     }
 
     public static void RunnerForAsync_ModerationAPI() throws IOException, ExecutionException, InterruptedException {

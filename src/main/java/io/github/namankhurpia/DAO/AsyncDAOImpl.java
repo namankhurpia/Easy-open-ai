@@ -31,6 +31,7 @@ public class AsyncDAOImpl implements AsyncApiInterface {
     ChatCompletionResponse chatCompletionResponseObj;
 
     VisionApiResponse visionApiResponseObj;
+
     private static Logger LOGGER = LoggerFactory.getLogger(AsyncDAOImpl.class);
 
     RetrofitApiInterface retrofitApiInterfaceObj;
